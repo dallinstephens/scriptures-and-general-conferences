@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "scriptures-and-general-conference": {
+    "scriptures-and-general-conferences": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/scriptures-and-general-conference",
+            "outputPath": "dist/scriptures-and-general-conferences",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -68,10 +68,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "scriptures-and-general-conference:build:production"
+              "buildTarget": "scriptures-and-general-conferences:build:production"
             },
             "development": {
-              "buildTarget": "scriptures-and-general-conference:build:development"
+              "buildTarget": "scriptures-and-general-conferences:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -79,7 +79,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "scriptures-and-general-conference:build"
+            "buildTarget": "scriptures-and-general-conferences:build"
           }
         },
         "test": {

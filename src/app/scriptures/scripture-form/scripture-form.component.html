@@ -1,4 +1,4 @@
-<div class="panel panel-default">
+<div class="panel panel-default form-container">
   <div class="panel-body">
     <form id="scripture-edit" (ngSubmit)="onSubmit(f)" #f="ngForm">
       <div class="row">
@@ -13,7 +13,13 @@
             name="scripturePassage"
             required
             [ngModel]="scripture?.scripturePassage"
-            #name="ngModel">
+            #scripturePassage="ngModel">
+          <div 
+            class="alert alert-danger"
+            *ngIf="f.submitted && scripturePassage.invalid">
+            <strong>A scripture reference is required.</strong>
+          </div>
+
         </div>
       </div>
 
@@ -27,13 +33,7 @@
             size="120"
             max="255"
             name="scriptureImageLink"
-            [ngModel]="scripture?.scriptureImageLink"
-            #scriptureImageLink="ngModel">
-          <div 
-            class="alert alert-danger"
-            *ngIf="scriptureImageLink.touched && scriptureImageLink.invalid">
-            <strong>Enter a valid scripture image link</strong>
-          </div>
+            [ngModel]="scripture?.scriptureImageLink">
         </div>
       </div>
 
@@ -47,12 +47,13 @@
             size="150"
             max="255"
             name="scriptureLink"
+            required
             [ngModel]="scripture?.scriptureLink"
             #scriptureLink="ngModel">
           <div 
             class="alert alert-danger"
-            *ngIf="scriptureLink.touched && scriptureLink.invalid">
-            <strong>Enter a valid scripture link</strong>
+            *ngIf="f.submitted && scriptureLink.invalid">
+            <strong>A scripture link is required.</strong>
           </div>            
         </div>
       </div>
@@ -63,44 +64,52 @@
           <input
             type="text"
             id="keywords"
-            class="form-control"
+            class="form-control required"
             size="150"
             max="255"
             name="keywords"
+            required
             [ngModel]="scripture?.keywords"
             #keywords="ngModel">
           <div 
             class="alert alert-danger"
-            *ngIf="keywords.untouched && keywords.invalid"><strong>A keyword or keyword phrase is required.</strong></div>
+            *ngIf="f.submitted && keywords.invalid"><strong>A keyword or keyword phrase is required.</strong></div>
         </div>
       </div>
 
       <div class="row">
-        <div class="form-group">
-          <label for="groupList">Group Scriptures:</label>
-
-          <div class="row" id="groupList"
-              style="min-height: 3rem;" >
-
-            <div *ngFor="let scripture of groupScriptures; let i = index">
-              <div>
-                <app-scripture-item class="col-sm-11" [scripture]="scripture"></app-scripture-item>
-                <button class="btn btn-danger col-sm-2 deleteButton" (click)="onRemoveItem(i)">X</button>
-              </div>
-            </div>
-            <span class="dragMsg" *ngIf="groupScriptures?.length < 1">Drag scriptures in group here</span>
-          </div>
-
+        <div class="col-sm-12 form-group">
+          <label for="questionOrTopic">Question or Topic:</label>
+          <input
+            type="text"
+            id="questionOrTopic"
+            class="form-control"
+            size="150"
+            max="255"
+            name="questionOrTopic"
+            [ngModel]="scripture?.questionOrTopic">
         </div>
       </div>
 
+      <div class="row">
+        <div class="col-sm-12 form-group">
+          <label for="note">Note:</label>
+          <input
+            type="text"
+            id="note"
+            class="form-control"
+            size="150"
+            max="255"
+            name="note"
+            [ngModel]="scripture?.note">
+        </div>
+      </div>
 
       <div class="row">
         <div class="col-xs-12 btn-toolbar">
           <button 
             class="btn btn-success" 
-            type="submit"
-            [disabled]="f.invalid">Save</button>
+            type="submit">Save</button>
           <button class="btn btn-primary" type="button" (click)="onCancel()">Cancel</button>
         </div>
       </div>

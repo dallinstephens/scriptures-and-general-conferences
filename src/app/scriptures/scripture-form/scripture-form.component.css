@@ -1,13 +1,13 @@
 
-.required.ng-invalid {
+.form-container {
+  background-color: #f8f8f8;
+}
+
+form.ng-submitted .required.ng-invalid {
   border: 1px solid red;
 }
 
-.invalid.ng-invalid.ng-dirty {
-  border: 1px solid red;
-}
-
-.pad-left-right{
+.pad-left-right {
   padding-left:.1rem;
 }
 

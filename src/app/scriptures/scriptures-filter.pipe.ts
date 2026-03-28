@@ -10,7 +10,10 @@ export class ScripturesFilterPipe implements PipeTransform {
 
     if (term && term.length > 0) {
       filteredScriptures = scriptures.filter(
-        (scripture: Scripture) => scripture.scripturePassage.toLowerCase().includes(term.toLowerCase())   
+        (scripture: Scripture) => {
+          return scripture.scripturePassage.toLowerCase().includes(term.toLowerCase()) ||
+          scripture.keywords.some(keyword => keyword.toLowerCase().includes(term.toLowerCase()));
+        }
       );
     }
 

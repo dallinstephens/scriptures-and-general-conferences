@@ -45,6 +45,10 @@ export class ScriptureFormComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
+    if (form.invalid) {
+      return;
+    }
+
     const value = form.value; // gets values from form's fields
     let newScripture = new Scripture(
       '', // id
@@ -52,6 +56,7 @@ export class ScriptureFormComponent implements OnInit {
       value.scriptureLink,
       value.keywords,
       value?.scriptureImageLink,
+      value?.questionOrTopic,
       value?.note
     );
 

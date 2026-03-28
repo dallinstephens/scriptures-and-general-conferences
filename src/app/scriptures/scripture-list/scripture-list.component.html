@@ -19,6 +19,14 @@
           </div>
         </div>
     </div>
+    <div class="panel-heading" style="margin: 15px 15px 0 15px;">
+        <div class="row" style="padding-left: 10px">
+          <!-- Reference to bootstrap grid: https://www.w3schools.com/bootstrap/bootstrap_grid_examples.asp -->
+          <div class="col-lg-5"><strong>Scripture</strong></div>
+          <div class="col-lg-5"><strong>Keywords</strong></div>
+          <div class="col-lg-2"><strong>something</strong></div>
+        </div>
+    </div>
     <div class="panel-body">
         <app-scripture-row
             *ngFor="let scriptureElement of scriptures | scripturesFilter:term "

@@ -1,1 +1,45 @@
-<p>scripture-note works!</p>
+<!-- Reference for bootstap 3 panels: https://www.w3schools.com/bootstrap/bootstrap_panels.asp -->
+<div 
+class="panel panel-default">
+<div class="panel-heading">
+    <div class="row">
+        <div class="col-xs-12">
+            <!-- Reference for bootstrap buttons: https://www.w3schools.com/bootstrap/bootstrap_buttons.asp -->
+            <a class="btn btn-default back-button" [routerLink]="['/scriptures']">Back</a>
+            <!-- button styles: https://www.w3schools.com/bootstrap/bootstrap_buttons.asp -->
+            <a class="btn btn-primary edit-button" [routerLink]="['/scriptures', scripture.id, 'edit']">Edit</a>
+            <a class="btn btn-danger delete-button" (click)="onDelete()">Delete</a>
+        </div>
+    </div>
+        <div class="row">
+            <div class="col-xs-12" style="font-size: 20px; padding-top: 10px;">
+                <b>{{ scripture.scripturePassage }}</b>
+            </div>
+        </div>
+        <div class="row" style="align-items: center; margin: 10px 0px">
+            <div class="col-sm-4" style="padding-left: 0;">       
+                <img *ngIf="scripture.scriptureImageLink" src="{{ scripture.scriptureImageLink }}"
+                alt="{{ scripture.scripturePassage }}"
+                class="scripture-image img-responsive">
+            </div>
+            <div class="col-sm-8" style="padding-left: 0">
+                <!-- Reference for iframe: https://www.w3schools.com/tags/tag_iframe.ASP -->
+                <iframe class="scripture-frame" [src]="safeUrl"></iframe>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" style=" font-size: 20px;">
+                <b>Keywords: </b>
+                <span>{{ scripture.keywords }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-12">{{ scripture.questionOrTopic }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">{{ scripture.note }}</div>
+        </div>
+    </div>
+</div>

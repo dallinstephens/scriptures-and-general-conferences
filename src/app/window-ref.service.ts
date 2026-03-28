@@ -3,7 +3,11 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class GcService {
+export class WindowRefService {
 
   constructor() { }
+
+  getNativeWindow() {
+    return window;
+  }
 }

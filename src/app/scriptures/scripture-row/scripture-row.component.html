@@ -1,12 +1,20 @@
-<a  [routerLink]="['/scriptures', scripture.id]" routerLinkActive="active"
-    class="list-group-item clearfix">
-    <div class="pull-left">
-        <h4 class="list-group-item-heading">{{ scripture.scripturePassage }}</h4>
-    </div>            
-    <span class="pull-right">
-        <img *ngIf="scripture.scriptureImageLink" src="{{ scripture.scriptureImageLink }}"
-        alt="{{ scripture.scripturePassage }}"
-        class="img-responsive"
-        style="max-height: 50px;">
-    </span>
-</a>
+<div class="scriptureRow">
+    <a  [routerLink]="['/scriptures', scripture.id]" routerLinkActive="active"
+        class="list-group-item clearfix">
+        <span class="col-lg-1">
+            <img *ngIf="scripture.scriptureImageLink" src="{{ scripture.scriptureImageLink }}"
+            alt="{{ scripture.scripturePassage }}"
+            class="img-responsive"
+            style="max-height: 50px;">
+        </span>
+        <div class="col-lg-4">
+            <h4 class="list-group-item-heading">{{ scripture.scripturePassage }}</h4>
+        </div>            
+        <div class="col-lg-5">
+            <h4 class="list-group-item-heading">{{ scripture.keywords }}</h4>
+        </div>            
+        <div class="col-lg-2">
+            <a class="btn btn-primary" (click)="onView()">View</a>
+        </div>            
+    </a>
+</div>

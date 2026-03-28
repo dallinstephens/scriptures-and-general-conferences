@@ -1,0 +1,23 @@
+.back-button, .edit-button, .delete-button {
+    width: 70px;
+}
+
+.edit-button {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+img.scripture-image {
+    height: 300px;
+    width: 100%;
+    object-fit: cover;
+    border: 1px solid lightslategrey;
+    margin-bottom: 15px;
+}
+
+.scripture-frame {
+    width: 100%;
+    height: 300px;
+    border: 1px solid lightslategrey;
+    margin-left: 0;
+}

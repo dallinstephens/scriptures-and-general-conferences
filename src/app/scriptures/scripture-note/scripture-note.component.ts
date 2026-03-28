@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import { Scripture } from '../scripture.model';
 import { ScriptureService } from '../scripture.service';
@@ -14,10 +15,12 @@ export class ScriptureNoteComponent implements OnInit {
   // ScriptureNoteComponent as an input.
   scripture: Scripture;
   id: string;
+  safeUrl: SafeResourceUrl;
 
   constructor(private scriptureService: ScriptureService,
               private router: Router,
-              private route: ActivatedRoute
+              private route: ActivatedRoute,
+              private sanitizer: DomSanitizer
   ) {}
 
   ngOnInit() {
@@ -28,6 +31,7 @@ export class ScriptureNoteComponent implements OnInit {
           this.scripture = this.scriptureService.getScripture(this.id);
         }
       );
+    this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.scripture.scriptureLink);
   }
 
   onDelete() {
