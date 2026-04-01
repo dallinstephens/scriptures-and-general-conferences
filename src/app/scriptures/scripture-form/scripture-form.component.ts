@@ -29,6 +29,17 @@ export class ScriptureFormComponent implements OnInit {
           this.id = params['id'];
           if (this.id === undefined || this.id === null) {
             this.editMode = false;
+            // initialize the scripture object
+            this.scripture = {
+              id: '',
+              scripturePassage: '',
+              scriptureLink: '',
+              keywords: [''],
+              scriptureImageLink: '',
+              questionsOrTopics: [''],
+              notes: [''],
+              attribution: 'Source: ChurchOfJesusChrist.org'        
+            };
             return;
           }
           this.originalScripture = this.scriptureService.getScripture(this.id);
@@ -37,9 +48,6 @@ export class ScriptureFormComponent implements OnInit {
           }
           this.editMode = true;
           this.scripture = JSON.parse(JSON.stringify(this.originalScripture));
-          // if (this.scripture.keywords) {
-          //   this.groupScriptures = JSON.parse(JSON.stringify(this.scripture.keywords));
-          // }
         }
       );
   }
@@ -54,10 +62,10 @@ export class ScriptureFormComponent implements OnInit {
       '', // id
       value.scripturePassage,
       value.scriptureLink,
-      value.keywords,
+      this.scripture.keywords,
       value?.scriptureImageLink,
-      value?.questionOrTopic,
-      value?.note
+      this.scripture.questionsOrTopics,
+      this.scripture.notes
     );
 
     if (this.editMode === true) {
@@ -71,5 +79,27 @@ export class ScriptureFormComponent implements OnInit {
 
   onCancel() {
     this.router.navigate(['/scriptures']);
+  }
+
+  addKeywords() {
+    this.scripture.keywords.push('');
+  }
+
+  removeKeywords(i: number) {
+    this.scripture.keywords.splice(i, 1);
+  }
+
+  addBlock() {
+    this.scripture.questionsOrTopics.push('');
+    this.scripture.notes.push('');
+  }
+
+  removeBlock(i: number) {
+    this.scripture.questionsOrTopics.splice(i, 1);
+    this.scripture.notes.splice(i, 1);
+  }
+
+  trackByIndex(index: number, obj: any): any {
+    return index;
   }
 }

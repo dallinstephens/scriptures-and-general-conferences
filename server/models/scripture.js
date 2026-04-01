@@ -10,8 +10,8 @@ const scriptureSchema = mongoose.Schema({
         validate: [v => v.length > 0, 'At least one keyword is required!'] 
     },
     scriptureImageLink: { type: String },
-    questionOrTopic: { type: [String] },
-    note: { type: [String] },
+    questionsOrTopics: { type: [String] },
+    notes: { type: [String] },
     attribution: { type: String, default: 'Source: ChurchOfJesusChrist.org'}    
 });
 

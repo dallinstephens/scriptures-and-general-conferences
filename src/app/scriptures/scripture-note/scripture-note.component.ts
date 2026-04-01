@@ -4,6 +4,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import { Scripture } from '../scripture.model';
 import { ScriptureService } from '../scripture.service';
+import { WindowRefService } from '../../window-ref.service';
 
 @Component({
   selector: 'app-scripture-note',
@@ -16,11 +17,13 @@ export class ScriptureNoteComponent implements OnInit {
   scripture: Scripture;
   id: string;
   safeUrl: SafeResourceUrl;
+  nativeWindow: any;
 
   constructor(private scriptureService: ScriptureService,
               private router: Router,
               private route: ActivatedRoute,
-              private sanitizer: DomSanitizer
+              private sanitizer: DomSanitizer,
+              private windowRefService: WindowRefService
   ) {}
 
   ngOnInit() {
@@ -31,8 +34,15 @@ export class ScriptureNoteComponent implements OnInit {
           this.scripture = this.scriptureService.getScripture(this.id);
         }
       );
-    this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.scripture.scriptureLink);
+      this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.scripture.scriptureLink);
+      this.nativeWindow = this.windowRefService.getNativeWindow();
   }
+
+  onView() {
+    if (this.scripture.scriptureLink) {
+      this.nativeWindow.open(this.scripture.scriptureLink);
+    }
+  }  
 
   onDelete() {
     this.scriptureService.deleteScripture(this.scripture);

@@ -2,6 +2,10 @@
     width: 70px;
 }
 
+.full-screen-button {
+    margin-right: 15px;
+}
+
 .edit-button {
     margin-left: 5px;
     margin-right: 5px;

@@ -1,6 +1,7 @@
 
 .form-container {
-  background-color: #f8f8f8;
+  background-color: darkgrey;
+  /* background-color: #f8f8f8; */
 }
 
 form.ng-submitted .required.ng-invalid {
@@ -17,6 +18,10 @@ form.ng-submitted .required.ng-invalid {
   width: 3.4rem;
 }
 
+.back-button, .add-button, .cancel-button {
+    width: 70px;
+}
+
 .buttonDiv {
   margin-top: 1.5rem;
 }
@@ -30,4 +35,26 @@ form.ng-submitted .required.ng-invalid {
   font-size: 2rem;
   color: darkgrey;
   margin-left: 3rem;
+}
+
+.scripture-block {
+  border: 1px solid darkgrey;
+  background-color: #f8f8f8;
+  margin: 0 0 10px 0;
+  padding: 10px;  
+}
+
+.keywords-block, .notes-block, .add-block {
+  border: 1px solid darkgrey;
+  background-color: #f8f8f8;
+  margin: 0 0 10px 0;
+  padding: 10px;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.no-padding {
+  padding: 0;
 }

@@ -29,8 +29,8 @@ router.post('/', (req, res, next) => {
         scriptureLink: req.body.scriptureLink,
         keywords: req.body.keywords,
         scriptureImageLink: req.body.scriptureImageLink,
-        questionOrTopic: req.body.questionOrTopic,
-        note: req.body.note
+        questionsOrTopics: req.body.questionsOrTopics,
+        notes: req.body.notes
     });        
     
     scripture.save()
@@ -55,8 +55,8 @@ router.put('/:id', (req, res, next) => {
             scripture.scriptureLink = req.body.scriptureLink;
             scripture.keywords = req.body.keywords;
             scripture.scriptureImageLink = req.body.scriptureImageLink;
-            scripture.questionOrTopic = req.body.questionOrTopic;
-            scripture.note = req.body.note;
+            scripture.questionsOrTopics = req.body.questionsOrTopics;
+            scripture.notes = req.body.notes;
 
             Scripture.updateOne({ id: req.params.id }, scripture)
                 .then(result => {

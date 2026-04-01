@@ -1,107 +1,143 @@
 <div class="panel panel-default form-container">
+  <div style="margin: 15px 15px -5px 15px">
+    <a class="btn btn-default back-button" [routerLink]="['/scriptures']">Back</a>
+  </div>
   <div class="panel-body">
     <form id="scripture-edit" (ngSubmit)="onSubmit(f)" #f="ngForm">
-      <div class="row">
-        <div class="col-sm-12 form-group">
-          <label for="scripturePassage">Scripture:</label>
-          <input
-            type="text"
-            id="scripturePassage"
-            class="form-control required"
-            size="120"
-            max="120"
-            name="scripturePassage"
-            required
-            [ngModel]="scripture?.scripturePassage"
-            #scripturePassage="ngModel">
-          <div 
-            class="alert alert-danger"
-            *ngIf="f.submitted && scripturePassage.invalid">
-            <strong>A scripture reference is required.</strong>
+      <div class="scripture-block">
+        <div class="row">
+          <div class="col-sm-12 form-group">
+            <label for="scripturePassage">Scripture:</label>
+            <input
+              type="text"
+              id="scripturePassage"
+              class="form-control required"
+              size="120"
+              max="120"
+              name="scripturePassage"
+              required
+              [ngModel]="scripture?.scripturePassage"
+              #scripturePassage="ngModel">
+            <div 
+              class="alert alert-danger"
+              *ngIf="f.submitted && scripturePassage.invalid">
+              <strong>A scripture reference is required.</strong>
+            </div>
+
           </div>
-
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col-sm-12 form-group">
-          <label for="scriptureImageLink">Scripture Image Link:</label>
-          <input
-            type="text"
-            id="scriptureImageLink"
-            class="form-control invalid"
-            size="120"
-            max="255"
-            name="scriptureImageLink"
-            [ngModel]="scripture?.scriptureImageLink">
+        <div class="row">
+          <div class="col-sm-12 form-group">
+            <label for="scriptureImageLink">Scripture Image Link:</label>
+            <input
+              type="text"
+              id="scriptureImageLink"
+              class="form-control invalid"
+              size="120"
+              max="255"
+              name="scriptureImageLink"
+              [ngModel]="scripture?.scriptureImageLink">
+          </div>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col-sm-12 form-group">
-          <label for="scriptureLink">Scripture Link:</label>
-          <input
-            type="text"
-            id="scriptureLink"
-            class="form-control required"
-            size="150"
-            max="255"
-            name="scriptureLink"
-            required
-            [ngModel]="scripture?.scriptureLink"
-            #scriptureLink="ngModel">
-          <div 
-            class="alert alert-danger"
-            *ngIf="f.submitted && scriptureLink.invalid">
-            <strong>A scripture link is required.</strong>
-          </div>            
+        <div class="row">
+          <div class="col-sm-12 form-group">
+            <label for="scriptureLink">Scripture Link:</label>
+            <input
+              type="text"
+              id="scriptureLink"
+              class="form-control required"
+              size="150"
+              max="255"
+              name="scriptureLink"
+              required
+              [ngModel]="scripture?.scriptureLink"
+              #scriptureLink="ngModel">
+            <div 
+              class="alert alert-danger"
+              *ngIf="f.submitted && scriptureLink.invalid">
+              <strong>A scripture link is required.</strong>
+            </div>            
+          </div>
         </div>
-      </div>
+      </div>  
 
-      <div class="row">
-        <div class="col-sm-12 form-group">
-          <label for="keywords">Keyword/Keyword Phrase:</label>
-          <input
-            type="text"
-            id="keywords"
-            class="form-control required"
-            size="150"
-            max="255"
-            name="keywords"
-            required
-            [ngModel]="scripture?.keywords"
-            #keywords="ngModel">
-          <div 
-            class="alert alert-danger"
-            *ngIf="f.submitted && keywords.invalid"><strong>A keyword or keyword phrase is required.</strong></div>
+        <div class="row" style="margin: 0">
+          <div class="col-sm-12" style="margin: 0; padding: 0">
+            <div 
+              class="keywords-block"
+              *ngFor="let keyword of scripture?.keywords; let i = index; trackBy: trackByIndex">
+              <div class="row">
+                <label class="col-sm-12" for="'keyword' + i">Keyword/Keyword Phrase:</label>
+                <div [class]="scripture.keywords.length > 1 ? 'col-sm-11' : 'col-sm-12'">
+                  <input
+                    type="text"
+                    [id]="'keyword' + i"
+                    class="form-control required"
+                    max="255"
+                    required
+                    [name]="'keyword' + i"
+                    [(ngModel)]="scripture.keywords[i]"
+                    #keywords="ngModel">
+                </div>
+                <div class="col-sm-1" style="margin: 0; padding: 0">
+                  <a 
+                    class="btn btn-danger" 
+                    *ngIf="scripture.keywords.length > 1"
+                    (click)="removeKeywords(i)">Remove</a>
+                </div>
+              </div>
+              <div 
+                class="alert alert-danger"
+                *ngIf="f.submitted && keywords.invalid"><strong>A keyword or keyword phrase is required.</strong>
+              </div>
+            </div>
+            <div class="col-sm-12 add-block">
+              <a class="btn btn-primary add-button" (click)="addKeywords()">Add</a>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col-sm-12 form-group">
-          <label for="questionOrTopic">Question or Topic:</label>
-          <input
-            type="text"
-            id="questionOrTopic"
-            class="form-control"
-            size="150"
-            max="255"
-            name="questionOrTopic"
-            [ngModel]="scripture?.questionOrTopic">
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-sm-12 form-group">
-          <label for="note">Note:</label>
-          <input
-            type="text"
-            id="note"
-            class="form-control"
-            size="150"
-            max="255"
-            name="note"
-            [ngModel]="scripture?.note">
+        
+      <div class="row" style="margin: 0">
+        <div class="col-sm-12" style="margin: 0; padding: 0">
+          <div
+            class="notes-block" 
+            *ngFor="let questionOrTopic of scripture?.questionsOrTopics; let i = index; trackBy: trackByIndex">
+            <div class="row">
+              <label class="col-sm-12" for="'questionOrTopic' + i">Question or Topic:</label>
+              <div class="col-sm-11">
+                <input
+                  type="text"
+                  [id]="'questionOrTopic' + i"
+                  class="form-control"
+                  max="255"
+                  [name]="'questionOrTopic' + i"
+                  [(ngModel)]="scripture.questionsOrTopics[i]">
+              </div>
+              <div class="col-sm-1" style="margin: 0; padding: 0">
+                <a class="btn btn-danger" (click)="removeBlock(i)">Remove</a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12 form-group">
+                <label  style="margin-top: 10px" for="'note' + i">Note:</label>
+                <!-- Reference for textarea: https://www.w3schools.com/tags/tag_textarea.asp -->
+                <textarea
+                  type="text"
+                  [id]="'note' + i"
+                  class="form-control"
+                  rows="7"
+                  [name]="'note' + i"
+                  [(ngModel)]="scripture.notes[i]">
+                </textarea>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 add-block">
+            <a class="btn btn-primary add-button" (click)="addBlock()">Add</a>
+          </div>
         </div>
       </div>
 
@@ -110,7 +146,7 @@
           <button 
             class="btn btn-success" 
             type="submit">Save</button>
-          <button class="btn btn-primary" type="button" (click)="onCancel()">Cancel</button>
+          <button class="btn btn-default cancel-button" type="button" (click)="onCancel()">Cancel</button>
         </div>
       </div>
 

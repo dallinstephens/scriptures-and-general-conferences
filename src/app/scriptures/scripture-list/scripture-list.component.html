@@ -1,10 +1,10 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        <div class="row">
+        <!-- <div class="row">
           <span class="title pad-left-right">Scriptures</span>
-        </div>
+        </div> -->
         <div class="row">
-          <div class="input-group pull-left pad-left-right col-xs-7">
+          <div class="input-group pull-left pad-left-right col-xs-10">
             <!-- Add the search box input field here -->
             <input 
                 type="text" 
@@ -14,7 +14,7 @@
                 placeholder="Enter a search value">
             <div class="glyphicon glyphicon-search input-group-addon" (click)="search(searchBox.value)"></div>
           </div>
-          <div class="pull-right pad-left-right">
+          <div class="pad-left-right">
             <a class="btn btn-success" [routerLink]="['new']">New Scripture</a>
           </div>
         </div>
@@ -22,9 +22,9 @@
     <div class="panel-heading" style="margin: 15px 15px 0 15px;">
         <div class="row" style="padding-left: 10px">
           <!-- Reference to bootstrap grid: https://www.w3schools.com/bootstrap/bootstrap_grid_examples.asp -->
-          <div class="col-lg-5"><strong>Scripture</strong></div>
+          <div class="col-lg-3"><strong>Scriptures</strong></div>
           <div class="col-lg-5"><strong>Keywords</strong></div>
-          <div class="col-lg-2"><strong>something</strong></div>
+          <div class="col-lg-4"><strong>Actions</strong></div>
         </div>
     </div>
     <div class="panel-body">
