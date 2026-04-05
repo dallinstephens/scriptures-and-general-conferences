@@ -18,6 +18,18 @@ import { GeneralconferenceListComponent } from './generalconferences/generalconf
 import { GeneralconferenceNoteComponent } from './generalconferences/generalconference-note/generalconference-note.component';
 import { GeneralconferenceRowComponent } from './generalconferences/generalconference-row/generalconference-row.component';
 import { GeneralconferencesFilterPipe } from './generalconferences/generalconferences-filter.pipe';
+import { BooksComponent } from './books/books.component';
+import { BookFormComponent } from './books/book-form/book-form.component';
+import { BookListComponent } from './books/book-list/book-list.component';
+import { BookNoteComponent } from './books/book-note/book-note.component';
+import { BookRowComponent } from './books/book-row/book-row.component';
+import { BooksFilterPipe } from './books/books-filter.pipe';
+import { VideosComponent } from './videos/videos.component';
+import { VideoFormComponent } from './videos/video-form/video-form.component';
+import { VideoListComponent } from './videos/video-list/video-list.component';
+import { VideoNoteComponent } from './videos/video-note/video-note.component';
+import { VideoRowComponent } from './videos/video-row/video-row.component';
+import { VideosFilterPipe } from './videos/videos-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -34,7 +46,19 @@ import { GeneralconferencesFilterPipe } from './generalconferences/generalconfer
     GeneralconferenceListComponent,
     GeneralconferenceNoteComponent,
     GeneralconferenceRowComponent,
-    GeneralconferencesFilterPipe
+    GeneralconferencesFilterPipe,
+    BooksComponent,
+    BookFormComponent,
+    BookListComponent,
+    BookNoteComponent,
+    BookRowComponent,
+    BooksFilterPipe,
+    VideosComponent,
+    VideoFormComponent,
+    VideoListComponent,
+    VideoNoteComponent,
+    VideoRowComponent,
+    VideosFilterPipe
   ],
   imports: [
     BrowserModule,

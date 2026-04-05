@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Scripture } from '../scripture.model';
 import { NgForm } from '@angular/forms';
 import { ScriptureService } from '../scripture.service';
@@ -15,6 +15,8 @@ export class ScriptureFormComponent implements OnInit {
   groupScriptures: Scripture[] = [];
   editMode: boolean = false;
   id!: string;
+  @Input() showKeywordsAndNotesBlockOnly: boolean = false;
+  @Output() keywordsAndNotesSaved = new EventEmitter<void>();  
 
   constructor(
     private scriptureService: ScriptureService,
@@ -93,11 +95,19 @@ export class ScriptureFormComponent implements OnInit {
       this.scriptureService.addScripture(newScripture);
     }
 
-    this.router.navigate(['/scriptures']);
+    if (this.showKeywordsAndNotesBlockOnly) {
+      this.keywordsAndNotesSaved.emit();
+    } else {
+      this.router.navigate(['/scriptures']);
+    }
   }
 
   onCancel() {
-    this.router.navigate(['/scriptures']);
+    if (this.showKeywordsAndNotesBlockOnly) {
+      this.keywordsAndNotesSaved.emit();
+    } else {
+      this.router.navigate(['/scriptures']);
+    }
   }
 
   addKeywords() {

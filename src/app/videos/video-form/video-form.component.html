@@ -1,0 +1,189 @@
+<div class="panel panel-default form-container">
+    <div style="margin: 15px 15px -5px 15px" *ngIf="!showKeywordsAndNotesBlockOnly">
+        <a class="btn btn-default back-button" [routerLink]="['/videos']">Back</a>
+    </div>
+    <div class="panel-body">
+        <form id="video-edit" (ngSubmit)="onSubmit(f)" #f="ngForm">
+            <div class="video-block" *ngIf="!showKeywordsAndNotesBlockOnly">                
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <label for="videoTitle">Video Title:</label>
+                        <input
+                        type="text"
+                        id="videoTitle"
+                        class="form-control required"
+                        size="120"
+                        max="120"
+                        name="videoTitle"
+                        required
+                        [ngModel]="video?.videoTitle"
+                        #videoTitle="ngModel">
+                        <div 
+                            class="alert alert-danger"
+                            *ngIf="f.submitted && videoTitle.invalid">
+                            <strong>A Video Title is required.</strong>
+                        </div> 
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <label for="videoSpeaker">Video Speaker:</label>
+                        <input
+                        type="text"
+                        id="videoSpeaker"
+                        class="form-control invalid"
+                        size="120"
+                        max="255"
+                        name="videoSpeaker"
+                        [ngModel]="video?.videoSpeaker">
+                    </div>
+                </div>                
+            
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <label for="videoImageLink">Video Image Link:</label>
+                        <input
+                            type="text"
+                            id="videoImageLink"
+                            class="form-control invalid"
+                            size="120"
+                            max="255"
+                            name="videoImageLink"
+                        [ngModel]="video?.videoImageLink">
+                    </div>
+                </div>
+            
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <label for="videoYoutubeLink">Video YouTube Link:</label>
+                        <input
+                            type="text"
+                            id="videoYoutubeLink"
+                            class="form-control invalid"
+                            size="120"
+                            max="255"
+                            name="videoYoutubeLink"
+                            [ngModel]="video?.videoYoutubeLink">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <label for="youtubeStartTimeInSec">YouTube Start Time (in seconds):</label>
+                        <input
+                            type="text"
+                            id="youtubeStartTimeInSec"
+                            class="form-control invalid"
+                            size="120"
+                            max="255"
+                            name="youtubeStartTimeInSec"
+                            [ngModel]="video?.youtubeStartTimeInSec">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <label for="youtubeEndTimeInSec">YouTube Start Time (in seconds):</label>
+                        <input
+                            type="text"
+                            id="youtubeEndTimeInSec"
+                            class="form-control invalid"
+                            size="120"
+                            max="255"
+                            name="youtubeEndTimeInSec"
+                            [ngModel]="video?.youtubeEndTimeInSec">
+                    </div>
+                </div>
+            
+            </div>  
+
+        <div class="row" style="margin: 0">
+          <div class="col-sm-12" style="margin: 0; padding: 0">
+            <div 
+              class="keywords-block"
+              *ngFor="let keyword of video?.keywords; let i = index; trackBy: trackByIndex">
+              <div class="row">
+                <label class="col-sm-12" [for]="'keyword' + i">Keyword/Keyword Phrase:</label>
+                <div [class]="video.keywords.length > 1 ? 'col-sm-11' : 'col-sm-12'">
+                  <input
+                    type="text"
+                    [id]="'keyword' + i"
+                    class="form-control required"
+                    max="255"
+                    required
+                    [name]="'keyword' + i"
+                    [(ngModel)]="video.keywords[i]"
+                    #keywords="ngModel">
+                </div>
+                <div class="col-sm-1" style="margin: 0; padding: 0">
+                  <a 
+                    class="btn btn-danger" 
+                    *ngIf="video.keywords.length > 1"
+                    (click)="removeKeywords(i)">Remove</a>
+                </div>
+              </div>
+              <div 
+                class="alert alert-danger"
+                *ngIf="f.submitted && keywords.invalid"><strong>A keyword or keyword phrase is required.</strong>
+              </div>
+            </div>
+            <div class="col-sm-12 add-block">
+              <a class="btn btn-primary add-button" (click)="addKeywords()">Add</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row" style="margin: 0">
+            <div class="col-sm-12" style="margin: 0; padding: 0">
+            <div
+                class="notes-block" 
+                *ngFor="let questionOrTopic of video?.questionsOrTopics; let i = index; trackBy: trackByIndex">
+                <div class="row">
+                <label class="col-sm-12" [for]="'questionOrTopic' + i">Question or Topic:</label>
+                <div class="col-sm-11">
+                    <input
+                    type="text"
+                    [id]="'questionOrTopic' + i"
+                    class="form-control"
+                    max="255"
+                    [name]="'questionOrTopic' + i"
+                    [(ngModel)]="video.questionsOrTopics[i]">
+                </div>
+                <div class="col-sm-1" style="margin: 0; padding: 0">
+                    <a class="btn btn-danger" (click)="removeBlock(i)">Remove</a>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-sm-12 form-group">
+                    <label  style="margin-top: 10px" [for]="'note' + i">Note:</label>
+                    <!-- Reference for textarea: https://www.w3schools.com/tags/tag_textarea.asp -->
+                    <textarea
+                    type="text"
+                    [id]="'note' + i"
+                    class="form-control"
+                    rows="7"
+                    [name]="'note' + i"
+                    [(ngModel)]="video.notes[i]">
+                    </textarea>
+                </div>
+                </div>
+            </div>
+            <div class="col-sm-12 add-block">
+                <a class="btn btn-primary add-button" (click)="addBlock()">Add</a>
+            </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 btn-toolbar">
+            <button 
+                class="btn btn-success" 
+                type="submit">Save</button>
+            <button class="btn btn-default cancel-button" type="button" (click)="onCancel()">Cancel</button>
+            </div>
+        </div>
+
+    </form>
+  </div>
+</div>

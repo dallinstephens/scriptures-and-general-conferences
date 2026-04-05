@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Generalconference } from '../generalconference.model';
 import { NgForm } from '@angular/forms';
 import { GeneralconferenceService } from '../generalconference.service';
@@ -15,6 +15,8 @@ export class GeneralconferenceFormComponent implements OnInit {
   groupGeneralconferences: Generalconference[] = [];
   editMode: boolean = false;
   id!: string;
+  @Input() showKeywordsAndNotesBlockOnly: boolean = false;
+  @Output() keywordsAndNotesSaved = new EventEmitter<void>();
 
   constructor(
     private generalconferenceService: GeneralconferenceService,
@@ -102,11 +104,19 @@ export class GeneralconferenceFormComponent implements OnInit {
       this.generalconferenceService.addGeneralconference(newGeneralconference);
     }
 
-    this.router.navigate(['/general-conference']);
+    if (this.showKeywordsAndNotesBlockOnly) {
+      this.keywordsAndNotesSaved.emit();
+    } else {
+      this.router.navigate(['/general-conferences']);
+    }
   }
 
   onCancel() {
-    this.router.navigate(['/general-conference']);
+    if (this.showKeywordsAndNotesBlockOnly) {
+      this.keywordsAndNotesSaved.emit();
+    } else {
+      this.router.navigate(['/general-conferences']);
+    }
   }
 
   addKeywords() {

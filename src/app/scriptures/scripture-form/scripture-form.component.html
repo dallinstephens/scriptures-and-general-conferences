@@ -1,10 +1,10 @@
 <div class="panel panel-default form-container">
-  <div style="margin: 15px 15px -5px 15px">
+  <div style="margin: 15px 15px -5px 15px" *ngIf="!showKeywordsAndNotesBlockOnly">
     <a class="btn btn-default back-button" [routerLink]="['/scriptures']">Back</a>
   </div>
   <div class="panel-body">
     <form id="scripture-edit" (ngSubmit)="onSubmit(f)" #f="ngForm">
-      <div class="scripture-block">
+      <div class="scripture-block" *ngIf="!showKeywordsAndNotesBlockOnly">
         <div class="row">
           <div class="col-sm-12 form-group">
             <label for="scripturePassage">Scripture:</label>

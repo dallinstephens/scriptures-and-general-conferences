@@ -22,6 +22,7 @@ export class GeneralconferenceNoteComponent implements OnInit {
   autoplay: boolean = localStorage.getItem('autoplay') === 'true';
   loadFullScreen: boolean = localStorage.getItem('loadFullScreen') === 'true';
   isFullScreen: boolean = false;
+  editMode: boolean = false;
 
   constructor(private generalconferenceService: GeneralconferenceService,
               private router: Router,
@@ -100,10 +101,22 @@ export class GeneralconferenceNoteComponent implements OnInit {
     if (this.generalconference.generalconferenceReadLink) {
       this.nativeWindow.open(this.generalconference.generalconferenceReadLink);
     }
-  }  
+  }
+  
+  toggleEdit() {
+    this.editMode = !this.editMode;
+    if (this.editMode) {
+      // documentElement targets the html tag
+      document.documentElement.classList.add('show-scrollbar');
+      document.documentElement.classList.remove('hide-scrollbar');
+    } else {
+      document.documentElement.classList.add('hide-scrollbar');
+      document.documentElement.classList.remove('show-scrollbar');      
+    }
+  }
 
   onDelete() {
     this.generalconferenceService.deleteGeneralconference(this.generalconference);
-    this.router.navigateByUrl('/general-conference');
+    this.router.navigateByUrl('/general-conferences');
   }
 }

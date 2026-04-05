@@ -1,0 +1,43 @@
+div.videoRow {
+    padding: 1px 15px;
+}
+
+div.videoRow > div:hover {
+    cursor: pointer;
+}
+
+.row:hover {
+    background-color: #f8f8f8;
+}
+
+a {
+    list-style-type: none;
+    color: #000;
+}
+
+.note-button, .view-button, .edit-button, .delete-button {
+    width: 70px;
+}
+
+.note-button {
+    margin-right: 5px;
+}
+
+.edit-button {
+    margin-right: 5px
+}
+
+.buttons-container {
+    text-align: right;
+    height: 50px;
+    margin: 0;
+    padding: 8px 0;
+}
+
+img {
+    height: 50px;
+    width: 70px;
+    object-fit: cover;
+    object-position: top;
+    padding: 0;
+}

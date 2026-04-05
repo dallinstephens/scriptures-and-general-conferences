@@ -1,20 +1,20 @@
 <div class="panel panel-default form-container">
-    <div style="margin: 15px 15px -5px 15px">
-        <a class="btn btn-default back-button" [routerLink]="['/general-conference']">Back</a>
+    <div style="margin: 15px 15px -5px 15px" *ngIf="!showKeywordsAndNotesBlockOnly">
+        <a class="btn btn-default back-button" [routerLink]="['/general-conferences']">Back</a>
     </div>
     <div class="panel-body">
         <form id="generalconference-edit" (ngSubmit)="onSubmit(f)" #f="ngForm">
-            <div class="generalconference-block">
+            <div class="generalconference-block" *ngIf="!showKeywordsAndNotesBlockOnly">
                 <div class="row">
                     <div class="col-sm-12 form-group">
                         <label for="generalconferenceMonthYear">General Conference Month/Year:</label>
                         <input
-                        type="text"
-                        id="generalconferenceMonthYear"
-                        class="form-control invalid"
-                        size="120"
-                        max="255"
-                        name="generalconferenceMonthYear"
+                          type="text"
+                          id="generalconferenceMonthYear"
+                          class="form-control invalid"
+                          size="120"
+                          max="255"
+                          name="generalconferenceMonthYear"
                         [ngModel]="generalconference?.generalconferenceMonthYear">
                     </div>
                 </div>
@@ -23,12 +23,12 @@
                     <div class="col-sm-12 form-group">
                         <label for="generalconferenceTalkTitle">General Conference Talk Title:</label>
                         <input
-                        type="text"
-                        id="generalconferenceTalkTitle"
-                        class="form-control invalid"
-                        size="120"
-                        max="255"
-                        name="generalconferenceTalkTitle"
+                          type="text"
+                          id="generalconferenceTalkTitle"
+                          class="form-control invalid"
+                          size="120"
+                          max="255"
+                          name="generalconferenceTalkTitle"
                         [ngModel]="generalconference?.generalconferenceTalkTitle">
                     </div>
                 </div>
@@ -37,202 +37,201 @@
                     <div class="col-sm-12 form-group">
                         <label for="generalconferenceSpeaker">General Conference Speaker:</label>
                         <input
-                        type="text"
-                        id="generalconferenceSpeaker"
-                        class="form-control required"
-                        size="120"
-                        max="120"
-                        name="generalconferenceSpeaker"
-                        required
-                        [ngModel]="generalconference?.generalconferenceSpeaker"
-                        #generalconferenceSpeaker="ngModel">
+                          type="text"
+                          id="generalconferenceSpeaker"
+                          class="form-control required"
+                          size="120"
+                          max="120"
+                          name="generalconferenceSpeaker"
+                          required
+                          [ngModel]="generalconference?.generalconferenceSpeaker"
+                          #generalconferenceSpeaker="ngModel">
                         <div 
-                        class="alert alert-danger"
-                        *ngIf="f.submitted && generalconferenceSpeaker.invalid">
-                        <strong>A General Conference Speaker is required.</strong>
-                    </div> 
+                          class="alert alert-danger"
+                          *ngIf="f.submitted && generalconferenceSpeaker.invalid">
+                          <strong>A General Conference Speaker is required.</strong>
+                        </div> 
+                    </div>
                 </div>
-            </div>
             
-            <div class="row">
-                <div class="col-sm-12 form-group">
-                    <label for="generalconferenceSpeakerImageLink">General Conference Speaker Image Link:</label>
-                    <input
-                    type="text"
-                    id="generalconferenceSpeakerImageLink"
-                    class="form-control invalid"
-                    size="120"
-                    max="255"
-                    name="generalconferenceSpeakerImageLink"
-                    [ngModel]="generalconference?.generalconferenceSpeakerImageLink">
-                </div>
-            </div>
-            
-            <div class="row">
-                <div class="col-sm-12 form-group">
-                    <label for="generalconferenceReadLink">General Conference Read Link:</label>
-                    <input
-                    type="text"
-                        id="generalconferenceReadLink"
-                        class="form-control required"
-                        size="150"
-                        max="255"
-                        name="generalconferenceReadLink"
-                        required
-                        [ngModel]="generalconference?.generalconferenceReadLink"
-                        #generalconferenceReadLink="ngModel">
-                    <div 
-                        class="alert alert-danger"
-                        *ngIf="f.submitted && generalconferenceReadLink.invalid">
-                        <strong>A General Conference read link is required.</strong>
-                    </div>            
-                </div>
-            </div>
-            
-            <div class="row">
-                <div class="col-sm-12 form-group">
-                    <label for="paragraphToJumpToLink">General Conference Paragraph to Jump To Link:</label>
-                    <input
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <label for="generalconferenceSpeakerImageLink">General Conference Speaker Image Link:</label>
+                        <input
                         type="text"
-                        id="paragraphToJumpToLink"
+                        id="generalconferenceSpeakerImageLink"
                         class="form-control invalid"
                         size="120"
                         max="255"
-                        name="paragraphToJumpToLink"
-                        [ngModel]="generalconference?.paragraphToJumpToLink">
+                        name="generalconferenceSpeakerImageLink"
+                        [ngModel]="generalconference?.generalconferenceSpeakerImageLink">
+                    </div>
                 </div>
-            </div>
             
-            <div class="row">
-                <div class="col-sm-12 form-group">
-                    <label for="generalconferenceYoutubeLink">General Conference YouTube Link:</label>
-                    <input
-                        type="text"
-                        id="generalconferenceYoutubeLink"
-                        class="form-control invalid"
-                        size="120"
-                        max="255"
-                        name="generalconferenceYoutubeLink"
-                        [ngModel]="generalconference?.generalconferenceYoutubeLink">
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <label for="generalconferenceReadLink">General Conference Read Link:</label>
+                        <input
+                          type="text"
+                            id="generalconferenceReadLink"
+                            class="form-control required"
+                            size="150"
+                            max="255"
+                            name="generalconferenceReadLink"
+                            required
+                            [ngModel]="generalconference?.generalconferenceReadLink"
+                            #generalconferenceReadLink="ngModel">
+                        <div 
+                            class="alert alert-danger"
+                            *ngIf="f.submitted && generalconferenceReadLink.invalid">
+                            <strong>A General Conference read link is required.</strong>
+                        </div>            
+                    </div>
                 </div>
-            </div>
+            
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <label for="paragraphToJumpToLink">General Conference Paragraph to Jump To Link:</label>
+                        <input
+                            type="text"
+                            id="paragraphToJumpToLink"
+                            class="form-control invalid"
+                            size="120"
+                            max="255"
+                            name="paragraphToJumpToLink"
+                            [ngModel]="generalconference?.paragraphToJumpToLink">
+                    </div>
+                </div>
+            
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <label for="generalconferenceYoutubeLink">General Conference YouTube Link:</label>
+                        <input
+                            type="text"
+                            id="generalconferenceYoutubeLink"
+                            class="form-control invalid"
+                            size="120"
+                            max="255"
+                            name="generalconferenceYoutubeLink"
+                            [ngModel]="generalconference?.generalconferenceYoutubeLink">
+                    </div>
+                </div>
 
-            <div class="row">
-                <div class="col-sm-12 form-group">
-                    <label for="youtubeStartTimeInSec">YouTube Start Time (in seconds):</label>
-                    <input
-                        type="text"
-                        id="youtubeStartTimeInSec"
-                        class="form-control invalid"
-                        size="120"
-                        max="255"
-                        name="youtubeStartTimeInSec"
-                        [ngModel]="generalconference?.youtubeStartTimeInSec">
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <label for="youtubeStartTimeInSec">YouTube Start Time (in seconds):</label>
+                        <input
+                            type="text"
+                            id="youtubeStartTimeInSec"
+                            class="form-control invalid"
+                            size="120"
+                            max="255"
+                            name="youtubeStartTimeInSec"
+                            [ngModel]="generalconference?.youtubeStartTimeInSec">
+                    </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-sm-12 form-group">
-                    <label for="youtubeEndTimeInSec">YouTube Start Time (in seconds):</label>
-                    <input
-                        type="text"
-                        id="youtubeEndTimeInSec"
-                        class="form-control invalid"
-                        size="120"
-                        max="255"
-                        name="youtubeEndTimeInSec"
-                        [ngModel]="generalconference?.youtubeEndTimeInSec">
+                <div class="row">
+                    <div class="col-sm-12 form-group">
+                        <label for="youtubeEndTimeInSec">YouTube Start Time (in seconds):</label>
+                        <input
+                            type="text"
+                            id="youtubeEndTimeInSec"
+                            class="form-control invalid"
+                            size="120"
+                            max="255"
+                            name="youtubeEndTimeInSec"
+                            [ngModel]="generalconference?.youtubeEndTimeInSec">
+                    </div>
                 </div>
-            </div>
             
-        </div>  
+          </div>  
 
-        <div class="row" style="margin: 0">
-          <div class="col-sm-12" style="margin: 0; padding: 0">
-            <div 
-              class="keywords-block"
-              *ngFor="let keyword of generalconference?.keywords; let i = index; trackBy: trackByIndex">
-              <div class="row">
-                <label class="col-sm-12" [for]="'keyword' + i">Keyword/Keyword Phrase:</label>
-                <div [class]="generalconference.keywords.length > 1 ? 'col-sm-11' : 'col-sm-12'">
-                  <input
-                    type="text"
-                    [id]="'keyword' + i"
-                    class="form-control required"
-                    max="255"
-                    required
-                    [name]="'keyword' + i"
-                    [(ngModel)]="generalconference.keywords[i]"
-                    #keywords="ngModel">
-                </div>
-                <div class="col-sm-1" style="margin: 0; padding: 0">
-                  <a 
-                    class="btn btn-danger" 
-                    *ngIf="generalconference.keywords.length > 1"
-                    (click)="removeKeywords(i)">Remove</a>
-                </div>
-              </div>
+          <div class="row" style="margin: 0">
+            <div class="col-sm-12" style="margin: 0; padding: 0">
               <div 
-                class="alert alert-danger"
-                *ngIf="f.submitted && keywords.invalid"><strong>A keyword or keyword phrase is required.</strong>
+                class="keywords-block"
+                *ngFor="let keyword of generalconference?.keywords; let i = index; trackBy: trackByIndex">
+                <div class="row">
+                  <label class="col-sm-12" [for]="'keyword' + i">Keyword/Keyword Phrase:</label>
+                  <div [class]="generalconference.keywords.length > 1 ? 'col-sm-11' : 'col-sm-12'">
+                    <input
+                      type="text"
+                      [id]="'keyword' + i"
+                      class="form-control required"
+                      max="255"
+                      required
+                      [name]="'keyword' + i"
+                      [(ngModel)]="generalconference.keywords[i]"
+                      #keywords="ngModel">
+                  </div>
+                  <div class="col-sm-1" style="margin: 0; padding: 0">
+                    <a 
+                      class="btn btn-danger" 
+                      *ngIf="generalconference.keywords.length > 1"
+                      (click)="removeKeywords(i)">Remove</a>
+                  </div>
+                </div>
+                <div 
+                  class="alert alert-danger"
+                  *ngIf="f.submitted && keywords.invalid"><strong>A keyword or keyword phrase is required.</strong>
+                </div>
+              </div>
+              <div class="col-sm-12 add-block">
+                <a class="btn btn-primary add-button" (click)="addKeywords()">Add</a>
               </div>
             </div>
-            <div class="col-sm-12 add-block">
-              <a class="btn btn-primary add-button" (click)="addKeywords()">Add</a>
+          </div>
+  
+          <div class="row" style="margin: 0">
+            <div class="col-sm-12" style="margin: 0; padding: 0">
+              <div
+                class="notes-block" 
+                *ngFor="let questionOrTopic of generalconference?.questionsOrTopics; let i = index; trackBy: trackByIndex">
+                <div class="row">
+                  <label class="col-sm-12" [for]="'questionOrTopic' + i">Question or Topic:</label>
+                  <div class="col-sm-11">
+                    <input
+                      type="text"
+                      [id]="'questionOrTopic' + i"
+                      class="form-control"
+                      max="255"
+                      [name]="'questionOrTopic' + i"
+                      [(ngModel)]="generalconference.questionsOrTopics[i]">
+                  </div>
+                  <div class="col-sm-1" style="margin: 0; padding: 0">
+                    <a class="btn btn-danger" (click)="removeBlock(i)">Remove</a>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12 form-group">
+                    <label  style="margin-top: 10px" [for]="'note' + i">Note:</label>
+                    <!-- Reference for textarea: https://www.w3schools.com/tags/tag_textarea.asp -->
+                    <textarea
+                      type="text"
+                      [id]="'note' + i"
+                      class="form-control"
+                      rows="7"
+                      [name]="'note' + i"
+                      [(ngModel)]="generalconference.notes[i]">
+                    </textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-12 add-block">
+                <a class="btn btn-primary add-button" (click)="addBlock()">Add</a>
+              </div>
             </div>
           </div>
-        </div>
 
-        
-      <div class="row" style="margin: 0">
-        <div class="col-sm-12" style="margin: 0; padding: 0">
-          <div
-            class="notes-block" 
-            *ngFor="let questionOrTopic of generalconference?.questionsOrTopics; let i = index; trackBy: trackByIndex">
-            <div class="row">
-              <label class="col-sm-12" [for]="'questionOrTopic' + i">Question or Topic:</label>
-              <div class="col-sm-11">
-                <input
-                  type="text"
-                  [id]="'questionOrTopic' + i"
-                  class="form-control"
-                  max="255"
-                  [name]="'questionOrTopic' + i"
-                  [(ngModel)]="generalconference.questionsOrTopics[i]">
-              </div>
-              <div class="col-sm-1" style="margin: 0; padding: 0">
-                <a class="btn btn-danger" (click)="removeBlock(i)">Remove</a>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-12 form-group">
-                <label  style="margin-top: 10px" [for]="'note' + i">Note:</label>
-                <!-- Reference for textarea: https://www.w3schools.com/tags/tag_textarea.asp -->
-                <textarea
-                  type="text"
-                  [id]="'note' + i"
-                  class="form-control"
-                  rows="7"
-                  [name]="'note' + i"
-                  [(ngModel)]="generalconference.notes[i]">
-                </textarea>
-              </div>
+          <div class="row">
+            <div class="col-xs-12 btn-toolbar">
+              <button 
+                class="btn btn-success" 
+                type="submit">Save</button>
+              <button class="btn btn-default cancel-button" type="button" (click)="onCancel()">Cancel</button>
             </div>
           </div>
-          <div class="col-sm-12 add-block">
-            <a class="btn btn-primary add-button" (click)="addBlock()">Add</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-xs-12 btn-toolbar">
-          <button 
-            class="btn btn-success" 
-            type="submit">Save</button>
-          <button class="btn btn-default cancel-button" type="button" (click)="onCancel()">Cancel</button>
-        </div>
-      </div>
 
     </form>
   </div>

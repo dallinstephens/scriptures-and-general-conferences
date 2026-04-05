@@ -31,6 +31,6 @@ export class GeneralconferenceRowComponent implements OnInit {
 
   onDelete() {
     this.generalconferenceService.deleteGeneralconference(this.generalconference);
-    this.router.navigateByUrl('/general-conference');
+    this.router.navigateByUrl('/general-conferences');
   }
 }

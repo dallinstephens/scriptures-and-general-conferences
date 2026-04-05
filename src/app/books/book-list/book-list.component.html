@@ -1,0 +1,33 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="row" style="padding-right: 0; margin: 0">
+          <div class="input-group pull-left pad-left-right col-xs-11" style="margin-right: 0">
+            <!-- Add the search box input field here -->
+            <input 
+                type="text" 
+                #searchBox
+                (keyup)="search(searchBox.value)"
+                class="form-control"
+                placeholder="Enter a search value">
+            <div class="glyphicon glyphicon-search input-group-addon" (click)="search(searchBox.value)"></div>
+          </div>
+          <div class="col-xs-1 new-book-button-container">
+            <a class="btn btn-success add-button" [routerLink]="['new']">Add</a>
+          </div>
+        </div>
+    </div>
+    <div class="panel-heading" style="margin: 15px 15px 0 15px;">
+        <div class="row" style="padding-left: 10px">
+          <!-- Reference to bootstrap grid: https://www.w3schools.com/bootstrap/bootstrap_grid_examples.asp -->
+          <div class="col-xs-4"><strong>Books</strong></div>
+          <div class="col-xs-4"><strong>Keywords</strong></div>
+          <div class="col-xs-4" style="padding-left: 60px"><strong>Actions</strong></div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <app-book-row
+            *ngFor="let bookElement of books | booksFilter:term"
+            [book]="bookElement">
+        </app-book-row>
+    </div>
+</div>

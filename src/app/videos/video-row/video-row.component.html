@@ -1,0 +1,29 @@
+<div class="videoRow">
+    <div class="list-group-item row clearfix" [routerLink]="['/videos', video.id]" style="height: 72px;">
+        <a>
+            <span class="col-xs-1" style="margin: 0; padding: 0">
+                <img *ngIf="video.videoImageLink" src="{{ video.videoImageLink }}"
+                alt="{{ video.videoTitle }}"
+                class="img-responsive"
+                style="max-height: 50px;">
+            </span>
+            <div class="col-xs-3">
+                <h4 class="list-group-item-heading">{{ video.videoTitle }}</h4>
+            </div>            
+            <div class="col-xs-4">
+                <h4 class="list-group-item-heading">{{ video.keywords.join(', ') }}</h4>
+            </div>            
+        </a>
+        <div class="col-xs-4 pull-right buttons-container">
+            <a 
+                class="btn btn-success note-button" 
+                [routerLink]="['/videos', video.id]">Note</a>
+            <a 
+                class="btn btn-warning edit-button" 
+                [routerLink]="['/videos', video.id, 'edit']">
+                Edit
+            </a>
+            <a class="btn btn-danger delete-button" (click)="onDelete(); $event.stopPropagation()">Delete</a>            
+        </div>
+    </div>            
+</div>

@@ -1,0 +1,155 @@
+<div class="panel panel-default form-container">
+  <div style="margin: 15px 15px -5px 15px" *ngIf="!showKeywordsAndNotesBlockOnly">
+    <a class="btn btn-default back-button" [routerLink]="['/books']">Back</a>
+  </div>
+  <div class="panel-body">
+    <form id="book-edit" (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <div class="book-block" *ngIf="!showKeywordsAndNotesBlockOnly">
+        <div class="row">
+          <div class="col-sm-12 form-group">
+            <label for="bookPassage">Book:</label>
+            <input
+              type="text"
+              id="bookPassage"
+              class="form-control required"
+              size="120"
+              max="120"
+              name="bookPassage"
+              required
+              [ngModel]="book?.bookName"
+              #bookPassage="ngModel">
+            <div 
+              class="alert alert-danger"
+              *ngIf="f.submitted && bookPassage.invalid">
+              <strong>A book reference is required.</strong>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 form-group">
+            <label for="bookImageLink">Book Image Link:</label>
+            <input
+              type="text"
+              id="bookImageLink"
+              class="form-control invalid"
+              size="120"
+              max="255"
+              name="bookImageLink"
+              [ngModel]="book?.bookImageLink">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-12 form-group">
+            <label for="bookLink">Book Link:</label>
+            <input
+              type="text"
+              id="bookLink"
+              class="form-control required"
+              size="150"
+              max="255"
+              name="bookLink"
+              required
+              [ngModel]="book?.bookLink"
+              #bookLink="ngModel">
+            <div 
+              class="alert alert-danger"
+              *ngIf="f.submitted && bookLink.invalid">
+              <strong>A book link is required.</strong>
+            </div>            
+          </div>
+        </div>
+      </div>  
+
+        <div class="row" style="margin: 0">
+          <div class="col-sm-12" style="margin: 0; padding: 0">
+            <div 
+              class="keywords-block"
+              *ngFor="let keyword of book?.keywords; let i = index; trackBy: trackByIndex">
+              <div class="row">
+                <label class="col-sm-12" [for]="'keyword' + i">Keyword/Keyword Phrase:</label>
+                <div [class]="book.keywords.length > 1 ? 'col-sm-11' : 'col-sm-12'">
+                  <input
+                    type="text"
+                    [id]="'keyword' + i"
+                    class="form-control required"
+                    max="255"
+                    required
+                    [name]="'keyword' + i"
+                    [(ngModel)]="book.keywords[i]"
+                    #keywords="ngModel">
+                </div>
+                <div class="col-sm-1" style="margin: 0; padding: 0">
+                  <a 
+                    class="btn btn-danger" 
+                    *ngIf="book.keywords.length > 1"
+                    (click)="removeKeywords(i)">Remove</a>
+                </div>
+              </div>
+              <div 
+                class="alert alert-danger"
+                *ngIf="f.submitted && keywords.invalid"><strong>A keyword or keyword phrase is required.</strong>
+              </div>
+            </div>
+            <div class="col-sm-12 add-block">
+              <a class="btn btn-primary add-button" (click)="addKeywords()">Add</a>
+            </div>
+          </div>
+        </div>
+
+        
+      <div class="row" style="margin: 0">
+        <div class="col-sm-12" style="margin: 0; padding: 0">
+          <div
+            class="notes-block" 
+            *ngFor="let questionOrTopic of book?.questionsOrTopics; let i = index; trackBy: trackByIndex">
+            <div class="row">
+              <label class="col-sm-12" [for]="'questionOrTopic' + i">Question or Topic:</label>
+              <div class="col-sm-11">
+                <input
+                  type="text"
+                  [id]="'questionOrTopic' + i"
+                  class="form-control"
+                  max="255"
+                  [name]="'questionOrTopic' + i"
+                  [(ngModel)]="book.questionsOrTopics[i]">
+              </div>
+              <div class="col-sm-1" style="margin: 0; padding: 0">
+                <a class="btn btn-danger" (click)="removeBlock(i)">Remove</a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12 form-group">
+                <label  style="margin-top: 10px" [for]="'note' + i">Note:</label>
+                <!-- Reference for textarea: https://www.w3schools.com/tags/tag_textarea.asp -->
+                <textarea
+                  type="text"
+                  [id]="'note' + i"
+                  class="form-control"
+                  rows="7"
+                  [name]="'note' + i"
+                  [(ngModel)]="book.notes[i]">
+                </textarea>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 add-block">
+            <a class="btn btn-primary add-button" (click)="addBlock()">Add</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 btn-toolbar">
+          <button 
+            class="btn btn-success" 
+            type="submit">Save</button>
+          <button class="btn btn-default cancel-button" type="button" (click)="onCancel()">Cancel</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>

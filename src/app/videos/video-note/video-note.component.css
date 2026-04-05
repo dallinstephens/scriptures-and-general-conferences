@@ -1,0 +1,49 @@
+.back-button, .edit-button, .delete-button {
+    width: 70px;
+}
+
+.full-screen-button {
+    margin-right: 15px;
+}
+
+.edit-button {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+img.video-image {
+    height: 300px;
+    width: 100%;
+    object-fit: contain;
+    border: 1px solid lightslategrey;
+    margin-bottom: 15px;
+}
+
+.video-frame-container {
+    border: 1px solid lightslategrey;
+    overflow: hidden;
+    height: 300px;
+    width: 100%;
+}
+
+.video-frame {
+    width: calc(100% + 85px);
+    height: 388px;
+    margin-left: -35px;
+    margin-top: -45px;
+    clip-path: inset(45px 15px 0 35px);
+}
+
+.youtube-not-fullscreen-iframe {
+    width: 100%;
+    height: 300px;
+}
+
+.youtube-fullscreen-iframe {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+}

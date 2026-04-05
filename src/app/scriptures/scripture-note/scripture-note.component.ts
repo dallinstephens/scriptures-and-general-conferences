@@ -18,6 +18,7 @@ export class ScriptureNoteComponent implements OnInit {
   id!: string;
   safeUrl!: SafeResourceUrl;
   nativeWindow: any;
+  editMode: boolean = false;
 
   constructor(private scriptureService: ScriptureService,
               private router: Router,
@@ -43,6 +44,18 @@ export class ScriptureNoteComponent implements OnInit {
   onView() {
     if (this.scripture.scriptureLink) {
       this.nativeWindow.open(this.scripture.scriptureLink);
+    }
+  }
+
+  toggleEdit() {
+    this.editMode = !this.editMode;
+    if (this.editMode) {
+      // documentElement targets the html tag
+      document.documentElement.classList.add('show-scrollbar');
+      document.documentElement.classList.remove('hide-scrollbar');
+    } else {
+      document.documentElement.classList.add('hide-scrollbar');
+      document.documentElement.classList.remove('show-scrollbar');      
     }
   }  
 

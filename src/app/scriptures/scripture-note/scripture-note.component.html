@@ -6,7 +6,8 @@
                 <!-- Reference for bootstrap buttons: https://www.w3schools.com/bootstrap/bootstrap_buttons.asp -->
                 <a class="btn btn-default back-button" [routerLink]="['/scriptures']">Back</a>
                 <!-- button styles: https://www.w3schools.com/bootstrap/bootstrap_buttons.asp -->
-                <a class="btn btn-warning edit-button" [routerLink]="['/scriptures', scripture.id, 'edit']">Edit</a>
+                <a class="btn btn-warning edit-button" (click)="toggleEdit()">{{ editMode ? 'Done' : 'Edit' }}</a>
+                <!-- <a class="btn btn-warning edit-button" [routerLink]="['/scriptures', scripture.id, 'edit']">Edit</a> -->
                 <a class="btn btn-danger delete-button" (click)="onDelete()">Delete</a>
                 <a class="btn btn-primary full-screen-button pull-right pad-left-right" (click)="onView(); $event.stopPropagation()">Full Screen</a>
             </div>
@@ -41,10 +42,18 @@
     </div>
     <div class="panel-body">
         <div class="row">
-            <div class="col-xs-12" *ngFor="let q of scripture.questionsOrTopics; let i = index">
-                <p><strong><u>Question/Topic</u>:</strong> {{ q }}</p>
-                <p><strong><u>Note</u>:</strong> {{ scripture.notes[i] }}</p>
-                <hr>
+            <div class="col-xs-12" *ngIf="editMode">
+                <app-scripture-form 
+                    [showKeywordsAndNotesBlockOnly]="true"
+                    (keywordsAndNotesSaved)="toggleEdit()">
+                </app-scripture-form>
+            </div>
+            <div *ngIf="!editMode">            
+                <div class="col-xs-12" *ngFor="let q of scripture.questionsOrTopics; let i = index">
+                    <p><strong><u>Question/Topic</u>:</strong> {{ q }}</p>
+                    <p><strong><u>Note</u>:</strong> {{ scripture.notes[i] }}</p>
+                    <hr>
+                </div>
             </div>
         </div>
     </div>

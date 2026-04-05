@@ -1,0 +1,33 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <div class="row" style="padding-right: 0; margin: 0">
+          <div class="input-group pull-left pad-left-right col-xs-11" style="margin-right: 0">
+            <!-- Add the search box input field here -->
+            <input 
+                type="text" 
+                #searchBox
+                (keyup)="search(searchBox.value)"
+                class="form-control"
+                placeholder="Enter a search value">
+            <div class="glyphicon glyphicon-search input-group-addon" (click)="search(searchBox.value)"></div>
+          </div>
+          <div class="col-xs-1 new-video-button-container">
+            <a class="btn btn-success add-button" [routerLink]="['new']">Add</a>
+          </div>
+        </div>
+    </div>
+    <div class="panel-heading" style="margin: 15px 15px 0 15px;">
+        <div class="row" style="padding-left: 10px">
+          <!-- Reference to bootstrap grid: https://www.w3schools.com/bootstrap/bootstrap_grid_examples.asp -->
+          <div class="col-xs-4"><strong>Videos</strong></div>
+          <div class="col-xs-5"><strong>Keywords</strong></div>
+          <div class="col-xs-3" style="padding-left: 40px"><strong>Actions</strong></div>
+        </div>
+    </div>
+    <div class="panel-body">
+        <app-video-row
+            *ngFor="let videoElement of videos | videosFilter:term"
+            [video]="videoElement">
+        </app-video-row>
+    </div>
+</div>

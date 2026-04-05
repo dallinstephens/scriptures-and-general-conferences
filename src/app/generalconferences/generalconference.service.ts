@@ -29,7 +29,7 @@ export class GeneralconferenceService {
     // return this.generalconferences.slice();
     this.http
       .get<{ message: string, generalconferences: Generalconference[] }>(
-        'http://localhost:3000/general-conference'
+        'http://localhost:3000/general-conferences'
         // 'https://dlscms-default-rtdb.firebaseio.com/generalconferences.json'
       )
       .subscribe({ 
@@ -92,7 +92,7 @@ export class GeneralconferenceService {
     // add to database
     this.http
       .post<{ message: string, generalconference: Generalconference }>(
-        'http://localhost:3000/general-conference', 
+        'http://localhost:3000/general-conferences', 
         generalconference,
         { headers: headers }
       )
@@ -125,7 +125,7 @@ export class GeneralconferenceService {
     // update database
     this.http
       .put(
-        'http://localhost:3000/general-conference/' + originalGeneralconference.id,
+        'http://localhost:3000/general-conferences/' + originalGeneralconference.id,
         newGeneralconference,
         { headers: headers }
       )
@@ -150,7 +150,7 @@ export class GeneralconferenceService {
 
     // delete from database
     this.http
-      .delete('http://localhost:3000/general-conference/' + generalconference.id)
+      .delete('http://localhost:3000/general-conferences/' + generalconference.id)
       .subscribe(
         () => {
           this.generalconferences.splice(pos, 1);

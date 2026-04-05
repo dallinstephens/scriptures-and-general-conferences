@@ -1,0 +1,35 @@
+.back-button, .edit-button, .delete-button {
+    width: 70px;
+}
+
+.full-screen-button {
+    margin-right: 15px;
+}
+
+.edit-button {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+img.book-image {
+    height: 300px;
+    width: 100%;
+    object-fit: contain;
+    /* border: 1px solid lightslategrey; */
+    margin-bottom: 15px;
+}
+
+.book-frame-container {
+    border: 1px solid lightslategrey;
+    overflow: hidden;
+    height: 300px;
+    width: 100%;
+}
+
+.book-frame {
+    width: calc(100% + 85px);
+    height: 388px;
+    margin-left: -35px;
+    margin-top: -45px;
+    clip-path: inset(45px 15px 0 35px);
+}

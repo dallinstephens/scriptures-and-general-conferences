@@ -4,11 +4,9 @@ ul.padding-around-navbar-links {
 }
 
 .header-buttons {
-    width: 167px;
+    width: 175px;
     text-align: center;
     border: 1px solid #e7e7e7;
-    /* border-top-left-radius: 12px;
-    border-top-right-radius: 12px; */
     margin-right: 2px;
 }
 

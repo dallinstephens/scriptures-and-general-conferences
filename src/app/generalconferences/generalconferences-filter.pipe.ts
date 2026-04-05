@@ -12,7 +12,8 @@ export class GeneralconferencesFilterPipe implements PipeTransform {
       filteredGeneralconferences = generalconferences.filter(
         (generalconference: Generalconference) => {
           return generalconference.generalconferenceSpeaker.toLowerCase().includes(term.toLowerCase()) ||
-          generalconference.keywords.some(keyword => keyword.toLowerCase().includes(term.toLowerCase()));
+          generalconference.keywords.some(keyword => keyword.toLowerCase().includes(term.toLowerCase())) ||
+          generalconference.generalconferenceMonthYear?.toLowerCase().includes(term.toLowerCase());
         }
       );
     }

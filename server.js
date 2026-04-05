@@ -13,6 +13,8 @@ var index = require('./server/routes/app');
 // import routing files for documents, messages, and contacts
 const scripturesRoutes = require('./server/routes/scriptures'); 
 const generalconferencesRoutes = require('./server/routes/generalconferences');
+const booksRoutes = require('./server/routes/books');
+const videosRoutes = require('./server/routes/videos');
 
 var app = express(); // create an instance of express
 
@@ -48,7 +50,9 @@ app.use('/', index);
 
 // Tell express to map the routes for scriptures and general conference
 app.use('/scriptures', scripturesRoutes);
-app.use('/general-conference', generalconferencesRoutes);
+app.use('/general-conferences', generalconferencesRoutes);
+app.use('/books', booksRoutes);
+app.use('/videos', videosRoutes);
 
 // Establish a connection to the mongo database
 mongoose.connect('mongodb://localhost:27017/scriptures-and-general-conferences')

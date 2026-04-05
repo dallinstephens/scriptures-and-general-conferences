@@ -1,0 +1,30 @@
+<div class="bookRow">
+    <div class="list-group-item row clearfix" [routerLink]="['/books', book.id]" style="height: 72px;">
+        <a>
+            <span class="col-xs-1" style="margin: 0; padding: 0">
+                <img *ngIf="book.bookImageLink" src="{{ book.bookImageLink }}"
+                alt="{{ book.bookPassage }}"
+                class="img-responsive"
+                style="max-height: 50px;">
+            </span>
+            <div class="col-xs-3">
+                <h4 class="list-group-item-heading">{{ book.bookName }}</h4>
+            </div>            
+            <div class="col-xs-4">
+                <h4 class="list-group-item-heading">{{ book.keywords.join(', ') }}</h4>
+            </div>            
+        </a>
+        <div class="col-xs-4 pull-right buttons-container">
+            <a 
+                class="btn btn-success note-button" 
+                [routerLink]="['/books', book.id]">Note</a>
+            <a class="btn btn-primary view-button" (click)="onView(); $event.stopPropagation()">Read</a>
+            <a 
+                class="btn btn-warning edit-button" 
+                [routerLink]="['/books', book.id, 'edit']">
+                Edit
+            </a>
+            <a class="btn btn-danger delete-button" (click)="onDelete(); $event.stopPropagation()">Delete</a>            
+        </div>
+    </div>            
+</div>
