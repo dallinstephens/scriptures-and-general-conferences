@@ -28,7 +28,7 @@ SequenceGenerator.prototype.nextId = function(collectionType) {
       updateObject = {maxScriptureId: maxScriptureId};
       nextId = maxScriptureId;
       break;
-    case 'generalConferences':
+    case 'generalconferences':
       maxGeneralConferenceId++;
       updateObject = {maxGeneralConferenceId: maxGeneralConferenceId};
       nextId = maxGeneralConferenceId;

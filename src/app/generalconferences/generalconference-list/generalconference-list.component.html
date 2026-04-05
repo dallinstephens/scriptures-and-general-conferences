@@ -11,7 +11,7 @@
                 placeholder="Enter a search value">
             <div class="glyphicon glyphicon-search input-group-addon" (click)="search(searchBox.value)"></div>
           </div>
-          <div class="col-xs-1 new-scripture-button-container">
+          <div class="col-xs-1 new-generalconference-button-container">
             <a class="btn btn-success add-button" [routerLink]="['new']">Add</a>
           </div>
         </div>
@@ -19,15 +19,15 @@
     <div class="panel-heading" style="margin: 15px 15px 0 15px;">
         <div class="row" style="padding-left: 10px">
           <!-- Reference to bootstrap grid: https://www.w3schools.com/bootstrap/bootstrap_grid_examples.asp -->
-          <div class="col-xs-3"><strong>Scriptures</strong></div>
+          <div class="col-xs-3"><strong>General Conferences</strong></div>
           <div class="col-xs-5"><strong>Keywords</strong></div>
           <div class="col-xs-4" style="padding-left: 60px"><strong>Actions</strong></div>
         </div>
     </div>
     <div class="panel-body">
-        <app-scripture-row
-            *ngFor="let scriptureElement of scriptures | scripturesFilter:term"
-            [scripture]="scriptureElement">
-        </app-scripture-row>
+        <app-generalconference-row
+            *ngFor="let generalconferenceElement of generalconferences | generalconferencesFilter:term"
+            [generalconference]="generalconferenceElement">
+        </app-generalconference-row>
     </div>
 </div>

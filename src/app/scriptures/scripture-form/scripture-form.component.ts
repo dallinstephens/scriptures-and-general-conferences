@@ -10,11 +10,11 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   styleUrl: './scripture-form.component.css'
 })
 export class ScriptureFormComponent implements OnInit {
-  originalScripture: Scripture;
-  scripture: Scripture;
+  originalScripture!: Scripture;
+  scripture!: Scripture;
   groupScriptures: Scripture[] = [];
   editMode: boolean = false;
-  id: string;
+  id!: string;
 
   constructor(
     private scriptureService: ScriptureService,
@@ -42,7 +42,7 @@ export class ScriptureFormComponent implements OnInit {
             };
             return;
           }
-          this.originalScripture = this.scriptureService.getScripture(this.id);
+          this.originalScripture = this.scriptureService.getScripture(this.id)!;
           if (this.originalScripture === undefined || this.originalScripture === null) {
             return;
           }
@@ -52,16 +52,35 @@ export class ScriptureFormComponent implements OnInit {
       );
   }
 
+  getPreviousParagraphLink(link: string): string {
+    if (!link) return link;
+
+    const match = link.match(/#p(\d+)$/);
+    if (!match) return link;
+
+    // match[0] returns the full match: #p12
+    // match[1] returns the first capture group: 12
+    const paragraphNumber = parseInt(match[1]);
+
+    if (paragraphNumber === 1) {
+      return link.replace(/#p1$/, '#study_summary1');
+    } else {
+      return link.replace(/#p(\d+)$/, `#p${paragraphNumber -1}`);
+    }
+  }
+
   onSubmit(form: NgForm) {
     if (form.invalid) {
       return;
     }
 
     const value = form.value; // gets values from form's fields
+    let previousParagraphLink = this.getPreviousParagraphLink(value.scriptureLink);
+
     let newScripture = new Scripture(
       '', // id
       value.scripturePassage,
-      value.scriptureLink,
+      previousParagraphLink,
       this.scripture.keywords,
       value?.scriptureImageLink,
       this.scripture.questionsOrTopics,
@@ -90,13 +109,13 @@ export class ScriptureFormComponent implements OnInit {
   }
 
   addBlock() {
-    this.scripture.questionsOrTopics.push('');
-    this.scripture.notes.push('');
+    this.scripture.questionsOrTopics?.push('');
+    this.scripture.notes?.push('');
   }
 
   removeBlock(i: number) {
-    this.scripture.questionsOrTopics.splice(i, 1);
-    this.scripture.notes.splice(i, 1);
+    this.scripture.questionsOrTopics?.splice(i, 1);
+    this.scripture.notes?.splice(i, 1);
   }
 
   trackByIndex(index: number, obj: any): any {

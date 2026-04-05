@@ -1,0 +1,60 @@
+
+.form-container {
+  background-color: darkgrey;
+  /* background-color: #f8f8f8; */
+}
+
+form.ng-submitted .required.ng-invalid {
+  border: 1px solid red;
+}
+
+.pad-left-right {
+  padding-left:.1rem;
+}
+
+.deleteButton {
+  margin-top: 1.5rem;
+  margin-left: -1.2rem;
+  width: 3.4rem;
+}
+
+.back-button, .add-button, .cancel-button {
+    width: 70px;
+}
+
+.buttonDiv {
+  margin-top: 1.5rem;
+}
+
+.groupDiv {
+  min-height: 6rem;
+  border: solid thin lightgrey;
+}
+
+.dragMsg {
+  font-size: 2rem;
+  color: darkgrey;
+  margin-left: 3rem;
+}
+
+.generalconference-block {
+  border: 1px solid darkgrey;
+  background-color: #f8f8f8;
+  margin: 0 0 10px 0;
+  padding: 10px;  
+}
+
+.keywords-block, .notes-block, .add-block {
+  border: 1px solid darkgrey;
+  background-color: #f8f8f8;
+  margin: 0 0 10px 0;
+  padding: 10px;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.no-padding {
+  padding: 0;
+}

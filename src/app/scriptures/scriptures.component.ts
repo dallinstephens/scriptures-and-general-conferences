@@ -3,12 +3,12 @@ import { Scripture } from './scripture.model';
 import { ScriptureService } from './scripture.service';
 
 @Component({
-  selector: 'cms-scriptures',
+  selector: 'app-scriptures',
   templateUrl: './scriptures.component.html',
   styleUrl: './scriptures.component.css'
 })
 export class ScripturesComponent implements OnInit {
-  selectedScripture: Scripture;
+  selectedScripture!: Scripture;
 
   constructor(private scriptureService: ScriptureService) {}
 

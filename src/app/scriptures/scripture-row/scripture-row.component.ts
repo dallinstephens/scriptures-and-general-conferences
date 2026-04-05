@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrl: './scripture-row.component.css'
 })
 export class ScriptureRowComponent implements OnInit {
-  @Input() scripture: Scripture;
+  @Input() scripture!: Scripture;
   nativeWindow: any;
 
   constructor(

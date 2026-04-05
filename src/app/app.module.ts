@@ -12,11 +12,12 @@ import { ScriptureFormComponent } from './scriptures/scripture-form/scripture-fo
 import { ScriptureListComponent } from './scriptures/scripture-list/scripture-list.component';
 import { ScriptureRowComponent } from './scriptures/scripture-row/scripture-row.component';
 import { ScripturesFilterPipe } from './scriptures/scriptures-filter.pipe';
-import { GeneralConferencesComponent } from './general-conferences/general-conferences.component';
-import { GeneralConferenceFormComponent } from './general-conferences/general-conference-form/general-conference-form.component';
-import { GeneralConferenceListComponent } from './general-conferences/general-conference-list/general-conference-list.component';
-import { GeneralConferenceNoteComponent } from './general-conferences/general-conference-note/general-conference-note.component';
-import { GeneralConferenceRowComponent } from './general-conferences/general-conference-row/general-conference-row.component';
+import { GeneralconferencesComponent } from './generalconferences/generalconferences.component';
+import { GeneralconferenceFormComponent } from './generalconferences/generalconference-form/generalconference-form.component';
+import { GeneralconferenceListComponent } from './generalconferences/generalconference-list/generalconference-list.component';
+import { GeneralconferenceNoteComponent } from './generalconferences/generalconference-note/generalconference-note.component';
+import { GeneralconferenceRowComponent } from './generalconferences/generalconference-row/generalconference-row.component';
+import { GeneralconferencesFilterPipe } from './generalconferences/generalconferences-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -28,11 +29,12 @@ import { GeneralConferenceRowComponent } from './general-conferences/general-con
     ScriptureListComponent,
     ScriptureRowComponent,
     ScripturesFilterPipe,
-    GeneralConferencesComponent,
-    GeneralConferenceFormComponent,
-    GeneralConferenceListComponent,
-    GeneralConferenceNoteComponent,
-    GeneralConferenceRowComponent
+    GeneralconferencesComponent,
+    GeneralconferenceFormComponent,
+    GeneralconferenceListComponent,
+    GeneralconferenceNoteComponent,
+    GeneralconferenceRowComponent,
+    GeneralconferencesFilterPipe
   ],
   imports: [
     BrowserModule,

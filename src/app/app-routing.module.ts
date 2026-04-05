@@ -5,9 +5,10 @@ import { ScripturesComponent } from "./scriptures/scriptures.component";
 import { ScriptureListComponent } from "./scriptures/scripture-list/scripture-list.component";
 import { ScriptureFormComponent } from "./scriptures/scripture-form/scripture-form.component";
 import { ScriptureNoteComponent } from "./scriptures/scripture-note/scripture-note.component";
-import { GeneralConferencesComponent } from "./general-conferences/general-conferences.component";
-import { GeneralConferenceFormComponent } from "./general-conferences/general-conference-form/general-conference-form.component";
-import { GeneralConferenceNoteComponent } from "./general-conferences/general-conference-note/general-conference-note.component";
+import { GeneralconferencesComponent } from "./generalconferences/generalconferences.component";
+import { GeneralconferenceListComponent } from "./generalconferences/generalconference-list/generalconference-list.component";
+import { GeneralconferenceFormComponent } from "./generalconferences/generalconference-form/generalconference-form.component";
+import { GeneralconferenceNoteComponent } from "./generalconferences/generalconference-note/generalconference-note.component";
 
 const appRoutes: Routes = [
     { path: '', redirectTo: '/scriptures', pathMatch: 'full' },
@@ -17,10 +18,11 @@ const appRoutes: Routes = [
         { path: ':id', component: ScriptureNoteComponent },
         { path: ':id/edit', component: ScriptureFormComponent }
     ] },
-    { path: 'general-conferences', component: GeneralConferencesComponent, children: [
-        { path: 'new', component: GeneralConferenceFormComponent },
-        { path: ':id', component: GeneralConferenceNoteComponent },
-        { path: ':id/edit', component: GeneralConferenceFormComponent }
+    { path: 'general-conference', component: GeneralconferencesComponent, children: [
+        { path: '', component: GeneralconferenceListComponent },
+        { path: 'new', component: GeneralconferenceFormComponent },
+        { path: ':id', component: GeneralconferenceNoteComponent },
+        { path: ':id/edit', component: GeneralconferenceFormComponent }
     ]}
 ];
 

@@ -14,9 +14,9 @@ import { WindowRefService } from '../../window-ref.service';
 export class ScriptureNoteComponent implements OnInit {
   // The value of the selectedScripture variable now needs to be passed down to the 
   // ScriptureNoteComponent as an input.
-  scripture: Scripture;
-  id: string;
-  safeUrl: SafeResourceUrl;
+  scripture!: Scripture;
+  id!: string;
+  safeUrl!: SafeResourceUrl;
   nativeWindow: any;
 
   constructor(private scriptureService: ScriptureService,
@@ -31,10 +31,12 @@ export class ScriptureNoteComponent implements OnInit {
       .subscribe(
         (params: Params) => {
           this.id = params['id'];
-          this.scripture = this.scriptureService.getScripture(this.id);
+          this.scripture = this.scriptureService.getScripture(this.id)!;
+          if (this.scripture) {
+            this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.scripture.scriptureLink);
+          }
         }
-      );
-      this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.scripture.scriptureLink);
+      );     
       this.nativeWindow = this.windowRefService.getNativeWindow();
   }
 

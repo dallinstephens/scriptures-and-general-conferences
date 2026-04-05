@@ -2,3 +2,16 @@ ul.padding-around-navbar-links {
     padding-top: 10px;
     padding-bottom: 10px;
 }
+
+.header-buttons {
+    width: 167px;
+    text-align: center;
+    border: 1px solid #e7e7e7;
+    /* border-top-left-radius: 12px;
+    border-top-right-radius: 12px; */
+    margin-right: 2px;
+}
+
+.active {
+    font-weight: bold;
+}

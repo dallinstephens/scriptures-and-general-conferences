@@ -12,7 +12,7 @@ export class ScriptureService {
   scriptures: Scripture[] = [];
   scriptureSelectedEvent = new EventEmitter<Scripture>();
   scriptureChangedEvent = new EventEmitter<Scripture[]>();
-  maxScriptureId: number;
+  maxScriptureId!: number;
 
   constructor(private http: HttpClient) { }
 
@@ -57,7 +57,7 @@ export class ScriptureService {
       })
   }
 
-  getScripture(id: string): Scripture {
+  getScripture(id: string): Scripture | null {
     for (let scripture of this.scriptures) {
       if (scripture.id === id) {
         return scripture;
@@ -130,7 +130,7 @@ export class ScriptureService {
         { headers: headers }
       )
       .subscribe(
-        (response: Response) => {
+        () => {
           this.scriptures[pos] = newScripture;
           this.sortAndSend();
         }
@@ -152,7 +152,7 @@ export class ScriptureService {
     this.http
       .delete('http://localhost:3000/scriptures/' + scripture.id)
       .subscribe(
-        (response: Response) => {
+        () => {
           this.scriptures.splice(pos, 1);
           this.sortAndSend();
         }

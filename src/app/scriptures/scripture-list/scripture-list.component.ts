@@ -11,7 +11,7 @@ import { ScriptureService } from '../scripture.service';
 })
 export class ScriptureListComponent implements OnInit, OnDestroy {
   scriptures: Scripture[] = [];
-  private subscription: Subscription;
+  private subscription!: Subscription;
   term: string = '';
 
   constructor(private scriptureService: ScriptureService) {}

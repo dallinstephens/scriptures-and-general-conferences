@@ -1,0 +1,30 @@
+<div class="generalconferenceRow">
+    <div class="list-group-item row clearfix" [routerLink]="['/general-conference', generalconference.id]" style="height: 72px;">
+        <a>
+            <span class="col-xs-1" style="margin: 0; padding: 0">
+                <img *ngIf="generalconference.generalconferenceSpeakerImageLink" src="{{ generalconference.generalconferenceSpeakerImageLink }}"
+                alt="{{ generalconference.generalconferencePassage }}"
+                class="img-responsive"
+                style="max-height: 50px;">
+            </span>
+            <div class="col-xs-2">
+                <h4 class="list-group-item-heading">{{ generalconference.generalconferenceSpeaker }}</h4>
+            </div>            
+            <div class="col-xs-5">
+                <h4 class="list-group-item-heading">{{ generalconference.keywords.join(', ') }}</h4>
+            </div>            
+        </a>
+        <div class="col-xs-4 pull-right buttons-container">
+            <a 
+                class="btn btn-success note-button" 
+                [routerLink]="['/general-conference', generalconference.id]">Note</a>
+            <a class="btn btn-primary view-button" (click)="onView(); $event.stopPropagation()">Read</a>
+            <a 
+                class="btn btn-warning edit-button" 
+                [routerLink]="['/general-conference', generalconference.id, 'edit']">
+                Edit
+            </a>
+            <a class="btn btn-danger delete-button" (click)="onDelete(); $event.stopPropagation()">Delete</a>            
+        </div>
+    </div>            
+</div>

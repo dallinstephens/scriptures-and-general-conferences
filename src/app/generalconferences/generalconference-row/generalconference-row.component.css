@@ -1,8 +1,8 @@
-div.scriptureRow {
+div.generalconferenceRow {
     padding: 1px 15px;
 }
 
-div.scriptureRow > div:hover {
+div.generalconferenceRow > div:hover {
     cursor: pointer;
 }
 

@@ -69,7 +69,7 @@
               class="keywords-block"
               *ngFor="let keyword of scripture?.keywords; let i = index; trackBy: trackByIndex">
               <div class="row">
-                <label class="col-sm-12" for="'keyword' + i">Keyword/Keyword Phrase:</label>
+                <label class="col-sm-12" [for]="'keyword' + i">Keyword/Keyword Phrase:</label>
                 <div [class]="scripture.keywords.length > 1 ? 'col-sm-11' : 'col-sm-12'">
                   <input
                     type="text"
@@ -106,7 +106,7 @@
             class="notes-block" 
             *ngFor="let questionOrTopic of scripture?.questionsOrTopics; let i = index; trackBy: trackByIndex">
             <div class="row">
-              <label class="col-sm-12" for="'questionOrTopic' + i">Question or Topic:</label>
+              <label class="col-sm-12" [for]="'questionOrTopic' + i">Question or Topic:</label>
               <div class="col-sm-11">
                 <input
                   type="text"
@@ -122,7 +122,7 @@
             </div>
             <div class="row">
               <div class="col-sm-12 form-group">
-                <label  style="margin-top: 10px" for="'note' + i">Note:</label>
+                <label  style="margin-top: 10px" [for]="'note' + i">Note:</label>
                 <!-- Reference for textarea: https://www.w3schools.com/tags/tag_textarea.asp -->
                 <textarea
                   type="text"
