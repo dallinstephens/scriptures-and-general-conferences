@@ -7,20 +7,20 @@
       <div class="book-block" *ngIf="!showKeywordsAndNotesBlockOnly">
         <div class="row">
           <div class="col-sm-12 form-group">
-            <label for="bookPassage">Book:</label>
+            <label for="bookName">Book:</label>
             <input
               type="text"
-              id="bookPassage"
+              id="bookName"
               class="form-control required"
               size="120"
               max="120"
-              name="bookPassage"
+              name="bookName"
               required
               [ngModel]="book?.bookName"
-              #bookPassage="ngModel">
+              #bookName="ngModel">
             <div 
               class="alert alert-danger"
-              *ngIf="f.submitted && bookPassage.invalid">
+              *ngIf="f.submitted && bookName.invalid">
               <strong>A book reference is required.</strong>
             </div>
 
