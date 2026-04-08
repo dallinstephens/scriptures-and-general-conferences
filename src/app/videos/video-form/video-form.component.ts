@@ -16,7 +16,7 @@ export class VideoFormComponent implements OnInit {
   editMode: boolean = false;
   id!: string;
   @Input() showKeywordsAndNotesBlockOnly: boolean = false;
-  @Output() keywordsAndNotesSaved = new EventEmitter<void>();  
+  @Output() keywordsAndNotesSaved = new EventEmitter<Video>();  
 
   constructor(
     private videoService: VideoService,
@@ -103,13 +103,13 @@ export class VideoFormComponent implements OnInit {
 
     let newVideo = new Video(
       '', // id
-      value.videoTitle,
+      value.videoTitle || this.originalVideo?.videoTitle,
       this.video.keywords,
-      value?.videoYoutubeLink,
-      value?.youtubeStartTimeInSec,
-      value?.youtubeEndTimeInSec,
-      value?.videoSpeaker,
-      videoImageLink,
+      value?.videoYoutubeLink || this.originalVideo?.videoYoutubeLink,
+      value?.youtubeStartTimeInSec || this.originalVideo?.youtubeStartTimeInSec,
+      value?.youtubeEndTimeInSec || this.originalVideo?.youtubeEndTimeInSec,
+      value?.videoSpeaker || this.originalVideo?.videoSpeaker,
+      videoImageLink || this.originalVideo?.videoImageLink,
       this.video.questionsOrTopics,
       this.video.notes
     );
@@ -121,7 +121,7 @@ export class VideoFormComponent implements OnInit {
     }
 
     if (this.showKeywordsAndNotesBlockOnly) {
-      this.keywordsAndNotesSaved.emit();
+      this.keywordsAndNotesSaved.emit(newVideo);
     } else {
       this.router.navigate(['/videos']);
     }

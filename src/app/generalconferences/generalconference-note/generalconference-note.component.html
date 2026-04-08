@@ -81,7 +81,7 @@
             <div class="col-xs-12" *ngIf="editMode">
                 <app-generalconference-form 
                     [showKeywordsAndNotesBlockOnly]="true"
-                    (keywordsAndNotesSaved)="toggleEdit()">
+                    (keywordsAndNotesSaved)="saveKeywordsAndNotes($event)">
                 </app-generalconference-form>
             </div>
             <div *ngIf="!editMode">

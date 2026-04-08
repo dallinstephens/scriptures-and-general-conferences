@@ -72,7 +72,7 @@
             <div class="col-xs-12" *ngIf="editMode">
                 <app-video-form 
                     [showKeywordsAndNotesBlockOnly]="true"
-                    (keywordsAndNotesSaved)="toggleEdit()">
+                    (keywordsAndNotesSaved)="saveKeywordsAndNotes($event)">
                 </app-video-form>
             </div>
             <div *ngIf="!editMode">

@@ -105,7 +105,12 @@ export class VideoNoteComponent implements OnInit {
       document.documentElement.classList.add('hide-scrollbar');
       document.documentElement.classList.remove('show-scrollbar');      
     }
-  }  
+  }
+  
+  saveKeywordsAndNotes(updatedVideo: Video) {
+    this.video = updatedVideo;
+    this.toggleEdit();
+  }
  
   onDelete() {
     this.videoService.deleteVideo(this.video);

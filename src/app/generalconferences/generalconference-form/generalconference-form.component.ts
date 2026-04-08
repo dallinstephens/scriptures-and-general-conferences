@@ -3,6 +3,7 @@ import { Generalconference } from '../generalconference.model';
 import { NgForm } from '@angular/forms';
 import { GeneralconferenceService } from '../generalconference.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { provideProtractorTestingSupport } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-generalconference-form',
@@ -16,7 +17,7 @@ export class GeneralconferenceFormComponent implements OnInit {
   editMode: boolean = false;
   id!: string;
   @Input() showKeywordsAndNotesBlockOnly: boolean = false;
-  @Output() keywordsAndNotesSaved = new EventEmitter<void>();
+  @Output() keywordsAndNotesSaved = new EventEmitter<Generalconference>();
 
   constructor(
     private generalconferenceService: GeneralconferenceService,
@@ -107,16 +108,16 @@ export class GeneralconferenceFormComponent implements OnInit {
 
     let newGeneralconference = new Generalconference(
       '', // id
-      value.generalconferenceSpeaker,
-      previousParagraphLink,
-      value.paragraphToJumpToLink,
+      value.generalconferenceSpeaker || this.originalGeneralconference?.generalconferenceSpeaker,
+      previousParagraphLink || this.getPreviousParagraphLink(this.originalGeneralconference?.paragraphToJumpToLink, this.originalGeneralconference?.generalconferenceReadLink),
+      value.paragraphToJumpToLink || this.originalGeneralconference?.paragraphToJumpToLink,
       this.generalconference.keywords,
-      value?.generalconferenceYoutubeLink,
-      value?.youtubeStartTimeInSec,
-      value?.youtubeEndTimeInSec,
-      value?.generalconferenceMonthYear,
-      value?.generalconferenceTalkTitle,
-      speakerImageLink,
+      value?.generalconferenceYoutubeLink || this.originalGeneralconference?.generalconferenceYoutubeLink,
+      value?.youtubeStartTimeInSec|| this.originalGeneralconference?.youtubeStartTimeInSec,
+      value?.youtubeEndTimeInSec || this.originalGeneralconference?.youtubeEndTimeInSec,
+      value?.generalconferenceMonthYear || this.originalGeneralconference?.generalconferenceMonthYear,
+      value?.generalconferenceTalkTitle || this.originalGeneralconference?.generalconferenceTalkTitle,
+      speakerImageLink || this.originalGeneralconference?.generalconferenceSpeakerImageLink,
       this.generalconference.questionsOrTopics,
       this.generalconference.notes
     );
@@ -128,7 +129,7 @@ export class GeneralconferenceFormComponent implements OnInit {
     }
 
     if (this.showKeywordsAndNotesBlockOnly) {
-      this.keywordsAndNotesSaved.emit();
+      this.keywordsAndNotesSaved.emit(newGeneralconference);
     } else {
       this.router.navigate(['/general-conferences']);
     }

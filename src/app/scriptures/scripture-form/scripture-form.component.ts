@@ -16,7 +16,7 @@ export class ScriptureFormComponent implements OnInit {
   editMode: boolean = false;
   id!: string;
   @Input() showKeywordsAndNotesBlockOnly: boolean = false;
-  @Output() keywordsAndNotesSaved = new EventEmitter<void>();  
+  @Output() keywordsAndNotesSaved = new EventEmitter<Scripture>();
 
   constructor(
     private scriptureService: ScriptureService,
@@ -81,10 +81,10 @@ export class ScriptureFormComponent implements OnInit {
 
     let newScripture = new Scripture(
       '', // id
-      value.scripturePassage,
-      previousParagraphLink,
+      value.scripturePassage || this.originalScripture?.scripturePassage,
+      previousParagraphLink || this.getPreviousParagraphLink(this.originalScripture?.scriptureLink),
       this.scripture.keywords,
-      value?.scriptureImageLink,
+      value?.scriptureImageLink || this.originalScripture?.scriptureImageLink,
       this.scripture.questionsOrTopics,
       this.scripture.notes
     );
@@ -96,7 +96,7 @@ export class ScriptureFormComponent implements OnInit {
     }
 
     if (this.showKeywordsAndNotesBlockOnly) {
-      this.keywordsAndNotesSaved.emit();
+      this.keywordsAndNotesSaved.emit(newScripture);
     } else {
       this.router.navigate(['/scriptures']);
     }

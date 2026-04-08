@@ -47,6 +47,19 @@ export class ScriptureNoteComponent implements OnInit {
     }
   }
 
+  ngOnChange() {
+    this.route.params
+      .subscribe(
+        (params: Params) => {
+          this.id = params['id'];
+          this.scripture = this.scriptureService.getScripture(this.id)!;
+          if (this.scripture) {
+            this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.scripture.scriptureLink);
+          }
+        }
+      );    
+  }
+
   toggleEdit() {
     this.editMode = !this.editMode;
     if (this.editMode) {
@@ -57,7 +70,12 @@ export class ScriptureNoteComponent implements OnInit {
       document.documentElement.classList.add('hide-scrollbar');
       document.documentElement.classList.remove('show-scrollbar');      
     }
-  }  
+  }
+
+  saveKeywordsAndNotes(updatedScripture: Scripture) {
+    this.scripture = updatedScripture;
+    this.toggleEdit();
+  }
 
   onDelete() {
     this.scriptureService.deleteScripture(this.scripture);

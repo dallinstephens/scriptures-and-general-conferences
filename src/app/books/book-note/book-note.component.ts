@@ -59,6 +59,11 @@ export class BookNoteComponent implements OnInit {
     }
   }  
 
+  saveKeywordsAndNotes(bookUpdated: Book) {
+    this.book = bookUpdated;
+    this.toggleEdit();
+  }
+
   onDelete() {
     this.bookService.deleteBook(this.book);
     this.router.navigateByUrl('/books');

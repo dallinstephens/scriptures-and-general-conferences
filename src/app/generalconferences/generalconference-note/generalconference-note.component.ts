@@ -110,9 +110,18 @@ export class GeneralconferenceNoteComponent implements OnInit {
       document.documentElement.classList.add('show-scrollbar');
       document.documentElement.classList.remove('hide-scrollbar');
     } else {
+      // this.generalconference = this.generalconferenceService.getGeneralconference(this.id)!;
       document.documentElement.classList.add('hide-scrollbar');
       document.documentElement.classList.remove('show-scrollbar');      
     }
+  }
+
+  saveKeywordsAndNotes(updatedGeneralconference: Generalconference) {
+    // console.log('updatedGeneralConference: ', updatedGeneralconference);
+    // console.log('youtubeLink: ', updatedGeneralconference.generalconferenceYoutubeLink);
+
+    this.generalconference = updatedGeneralconference;
+    this.toggleEdit();
   }
 
   onDelete() {

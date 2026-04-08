@@ -45,7 +45,7 @@
             <div class="col-xs-12" *ngIf="editMode">
                 <app-scripture-form 
                     [showKeywordsAndNotesBlockOnly]="true"
-                    (keywordsAndNotesSaved)="toggleEdit()">
+                    (keywordsAndNotesSaved)="saveKeywordsAndNotes($event)">
                 </app-scripture-form>
             </div>
             <div *ngIf="!editMode">            

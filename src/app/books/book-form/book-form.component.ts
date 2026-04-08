@@ -16,7 +16,7 @@ export class BookFormComponent implements OnInit {
   editMode: boolean = false;
   id!: string;
   @Input() showKeywordsAndNotesBlockOnly: boolean = false;
-  @Output() keywordsAndNotesSaved = new EventEmitter<void>();  
+  @Output() keywordsAndNotesSaved = new EventEmitter<Book>();
 
   constructor(
     private bookService: BookService,
@@ -81,10 +81,10 @@ export class BookFormComponent implements OnInit {
 
     let newBook = new Book(
       '', // id
-      value.bookPassage,
-      previousParagraphLink,
+      value.bookName || this.originalBook?.bookName,
+      previousParagraphLink || this.getPreviousParagraphLink(this.originalBook?.bookLink),
       this.book.keywords,
-      value?.bookImageLink,
+      value?.bookImageLink || this.originalBook?.bookImageLink,
       this.book.questionsOrTopics,
       this.book.notes
     );
@@ -96,7 +96,7 @@ export class BookFormComponent implements OnInit {
     }
 
     if (this.showKeywordsAndNotesBlockOnly) {
-      this.keywordsAndNotesSaved.emit();
+      this.keywordsAndNotesSaved.emit(newBook);
     } else {
       this.router.navigate(['/books']);
     }
