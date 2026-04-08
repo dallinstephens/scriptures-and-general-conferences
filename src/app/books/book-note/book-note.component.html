@@ -8,7 +8,7 @@
                 <!-- button styles: https://www.w3schools.com/bootstrap/bootstrap_buttons.asp -->
                 <a class="btn btn-warning edit-button" (click)="toggleEdit()">{{ editMode ? 'Done' : 'Edit' }}</a> 
                 <!-- <a class="btn btn-warning edit-button" [routerLink]="['/books', book.id, 'edit']">Edit</a> -->
-                <a class="btn btn-danger delete-button" (click)="onDelete()">Delete</a>
+                <!-- <a class="btn btn-danger delete-button" (click)="onDelete()">Delete</a> -->
                 <a class="btn btn-primary full-screen-button pull-right pad-left-right" (click)="onView(); $event.stopPropagation()">Full Screen</a>
             </div>
         </div>

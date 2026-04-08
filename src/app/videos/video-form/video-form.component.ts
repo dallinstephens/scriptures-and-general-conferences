@@ -71,12 +71,35 @@ export class VideoFormComponent implements OnInit {
     return videoReadLink.replace(/#.*$/, fragment);
   }
 
+  getYoutubeThumbnailImageUrl(youtubeLink: string | undefined) {
+    if (!youtubeLink) return '';
+
+    // handles these format:
+    // https://www.youtube.com/watch?v=[youtubeId]
+    // https://youtu.be/[youtubeId]
+    // https://www.youtube.com/embed/[youtubeId]
+    // (?:...) - non-capturing group because I don't use match[0]
+    // 
+    const match = youtubeLink.match(
+      /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+    );
+
+    // match[0] returns the full match: #...
+    // match[1] returns the first capture group, but there is none in this case
+    return match ? `https://img.youtube.com/vi/${match[1]}/hqdefault.jpg` : '';
+  }  
+
   onSubmit(form: NgForm) {
     if (form.invalid) {
       return;
     }
 
     const value = form.value; // gets values from form's fields
+
+    let videoImageLink = value?.videoImageLink;
+    if (!videoImageLink && value?.videoYoutubeLink) {
+      videoImageLink = this.getYoutubeThumbnailImageUrl(value.videoYoutubeLink);
+    }    
 
     let newVideo = new Video(
       '', // id
@@ -86,7 +109,7 @@ export class VideoFormComponent implements OnInit {
       value?.youtubeStartTimeInSec,
       value?.youtubeEndTimeInSec,
       value?.videoSpeaker,
-      value?.videoImageLink,
+      videoImageLink,
       this.video.questionsOrTopics,
       this.video.notes
     );
